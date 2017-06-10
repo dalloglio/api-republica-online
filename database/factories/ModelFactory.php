@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(\App\Domains\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'birthday' => $faker->date(),
-        'age' => $faker->randomElement(['m', 'f']),
+        'gender' => $faker->randomElement(['m', 'f']),
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'status' => mt_rand(0, 5),
