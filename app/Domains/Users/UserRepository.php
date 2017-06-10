@@ -6,7 +6,7 @@ use App\Support\BaseRepository;
 use App\Support\Traits\CrudMethods;
 use Illuminate\Database\Eloquent\Model;
 
-class UsersRepository extends BaseRepository
+class UserRepository extends BaseRepository
 {
     use CrudMethods;
 

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Domains\UsersRepository;
+use App\Domains\UserRepository;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     protected $users;
 
-    public function __construct(UsersRepository $users)
+    public function __construct(UserRepository $users)
     {
         $this->users = $users;
     }
