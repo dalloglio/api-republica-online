@@ -64,7 +64,7 @@ abstract class BaseRepository implements BaseRepositoryContract
      */
     public function lists($column, $key = null)
     {
-        return $this->newQuery()->lists($column, $key);
+        return $this->newQuery()->pluck($column, $key);
     }
 
     /**
@@ -74,6 +74,7 @@ abstract class BaseRepository implements BaseRepositoryContract
      */
     public function findById($id, $fail = true)
     {
+        $id = (int) $id;
         if ($fail) {
             return $this->newQuery()->findOrFail($id);
         }

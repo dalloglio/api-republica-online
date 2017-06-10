@@ -29,12 +29,13 @@ trait CrudMethods
     /**
      * @param Model $model
      * @param array $data
-     * @return bool
+     * @return Model
      */
     public function update(Model $model, array $data = [])
     {
         $this->setModelData($model, $data);
-        return $this->save($model);
+        $this->save($model);
+        return $model;
     }
 
     /**
@@ -59,10 +60,11 @@ trait CrudMethods
 
     /**
      * @param Model $model
-     * @return bool|null
+     * @return Model
      */
     public function delete(Model $model)
     {
-        return $model->delete();
+        $model->delete();
+        return $model;
     }
 }
