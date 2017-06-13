@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
+$exceptRoutes = ['create', 'edit'];
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('users', 'UserController', ['except' => $exceptRoutes]);
