@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('testes', function () {
+    $data = factory(\App\Domains\User::class)->make();
+    dd($data->getAttributes());
+});
