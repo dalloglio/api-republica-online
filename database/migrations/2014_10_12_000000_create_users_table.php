@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('birthday');
-            $table->enum('gender', ['m', 'f']);
+            $table->enum('gender', \App\Domains\Users\User::genders());
             $table->string('email')->unique();
             $table->string('password');
             $table->unsignedTinyInteger('status')->default(0);

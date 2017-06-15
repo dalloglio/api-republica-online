@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Domains\User;
+use App\Domains\Users\User;
 use Tests\Support\CrudMethods;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

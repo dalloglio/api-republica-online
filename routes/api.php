@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource('ads', 'AdController', ['except' => $exceptRoutes]);
 Route::resource('users', 'UserController', ['except' => $exceptRoutes]);
