@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains;
+namespace App\Domains\Users;
 
 use App\Support\BaseRepository;
 use App\Support\Traits\CrudMethods;
@@ -11,7 +11,7 @@ class UserRepository extends BaseRepository
     use CrudMethods;
 
     /**
-     * @var string $modelClass
+     * @var string
      */
     protected $modelClass = User::class;
 

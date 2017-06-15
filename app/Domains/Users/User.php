@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains;
+namespace App\Domains\Users;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
+
+    const GENDER_MALE = 'Male';
+
+    const GENDER_FEMALE = 'Female';
 
     protected $fillable = [
         'name',
@@ -27,4 +31,11 @@ class User extends Authenticatable
 
     protected $dates = ['deleted_at'];
 
+    public static function genders()
+    {
+        return [
+            self::GENDER_MALE,
+            self::GENDER_FEMALE,
+        ];
+    }
 }
