@@ -13,11 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-$exceptRoutes = ['create', 'edit'];
+Route::group(['middleware' => ['auth:api']], function () {
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    $exceptRoutes = ['create', 'edit'];
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::resource('ads', 'AdController', ['except' => $exceptRoutes]);
+    Route::resource('users', 'UserController', ['except' => $exceptRoutes]);
 });
 
-Route::resource('ads', 'AdController', ['except' => $exceptRoutes]);
-Route::resource('users', 'UserController', ['except' => $exceptRoutes]);

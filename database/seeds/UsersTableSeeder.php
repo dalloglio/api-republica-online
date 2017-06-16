@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Ricardo',
             'last_name' => 'Pires Dall`Oglio',
             'birthday' => '1989-05-22',
-            'gender' => 'male',
+            'gender' => \App\Domains\Users\User::GENDER_MALE,
             'email' => 'ricardo.tech@live.com',
             'password' => bcrypt('123456'),
             'status' => 1
