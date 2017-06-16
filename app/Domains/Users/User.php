@@ -2,13 +2,12 @@
 
 namespace App\Domains\Users;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable, SoftDeletes;
+    use SoftDeletes;
 
     const GENDER_MALE = 'Male';
 
