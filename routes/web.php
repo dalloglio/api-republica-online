@@ -19,3 +19,7 @@ Route::get('testes', function () {
     $data = factory(\App\Domains\User::class)->make();
     dd($data->getAttributes());
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
