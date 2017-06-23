@@ -14,14 +14,15 @@ class CreateAdsTable extends Migration
     public function up()
     {
         Schema::create('ads', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('slug');
             $table->string('title');
             $table->string('description');
             $table->text('content');
             $table->decimal('price');
-            $table->timestamp('begin');
-            $table->timestamp('end');
+            $table->timestamp('begin')->nullable();
+            $table->timestamp('end')->nullable();
             $table->unsignedTinyInteger('status')->default(0);
             // $table->unsignedInteger('category_id')->unsigned()->index();
             $table->unsignedInteger('user_id')->index();

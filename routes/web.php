@@ -16,8 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('testes', function () {
-    $data = factory(\App\Domains\User::class)->make();
-    dd($data->getAttributes());
+    dd(Request::ip());
 });
 
 Auth::routes();
