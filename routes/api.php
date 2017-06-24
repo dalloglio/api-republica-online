@@ -13,7 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::get('/', function () {
+    dd('Api República Online');
+});
+
+Route::group(['middleware' => ['api']], function () {
 
     $exceptRoutes = ['create', 'edit'];
 
