@@ -15,6 +15,6 @@ class UserTest extends TestCase
     {
         parent::__construct($name, $data, $dataName);
         $this->modelClass = User::class;
-        $this->endpoint = '/api/users';
+        $this->endpoint = '/users';
     }
 }

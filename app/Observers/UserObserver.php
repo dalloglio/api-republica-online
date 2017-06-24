@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Domains\User;
+use App\Domains\Users\User;
 
 class UserObserver
 {
