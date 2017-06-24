@@ -25,6 +25,7 @@ Route::group(['middleware' => ['api']], function () {
         return $request->user();
     });
 
+    Route::resource('addresses', 'AddressController', ['except' => $exceptRoutes]);
     Route::resource('ads', 'AdController', ['except' => $exceptRoutes]);
     Route::resource('users', 'UserController', ['except' => $exceptRoutes]);
 });
