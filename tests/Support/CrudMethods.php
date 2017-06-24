@@ -55,7 +55,7 @@ trait CrudMethods
 
     public function testDelete()
     {
-        $model = factory($this->modelClass)->create(['id' => 2]);
+        $model = factory($this->modelClass)->create();
         $response = $this->json('DELETE', $this->endpoint . '/' . $model->id);
         $response->assertStatus(200)->assertJson($model->toArray());
     }

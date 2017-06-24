@@ -17,17 +17,6 @@ class AdRepository extends BaseRepository
 
     /**
      * @param array $data
-     * @return Model
-     */
-    public function create(array $data = [])
-    {
-        $model = $this->factory($data);
-        $this->save($model);
-        return $model;
-    }
-
-    /**
-     * @param array $data
      * @param $id
      * @return Model
      */

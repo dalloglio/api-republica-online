@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    dd('Api República Online');
+    echo '<h2>Api República Online</h2>';
 });
 
 Route::group(['middleware' => ['api']], function () {
