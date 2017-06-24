@@ -2,7 +2,7 @@
 
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Domains\Addresses\Address::class, function (Faker\Generator $faker) {
+$factory->define(App\Domains\Address\Address::class, function (Faker\Generator $faker) {
     return [
         'zip_code' => $faker->numerify('########'),
         'street' => $faker->streetName,
