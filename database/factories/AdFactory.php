@@ -2,7 +2,7 @@
 
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Domains\Ads\Ad::class, function (Faker\Generator $faker) {
+$factory->define(App\Domains\Ad\Ad::class, function (Faker\Generator $faker) {
     return [
         'slug' => str_slug($faker->sentence(6, 3)),
         'title' => $faker->sentence(6, 3),
@@ -10,7 +10,7 @@ $factory->define(App\Domains\Ads\Ad::class, function (Faker\Generator $faker) {
         'content' => $faker->text,
         'price' => $faker->randomFloat(2, 1, 1000),
         'user_id' => function () {
-            return factory(\App\Domains\Users\User::class)->create()->id;
+            return factory(\App\Domains\User\User::class)->create()->id;
         },
         'begin' => $faker->date(),
         'end' => $faker->date(),
