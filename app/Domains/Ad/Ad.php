@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Ads;
+namespace App\Domains\Ad;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
