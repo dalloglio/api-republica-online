@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Ads;
+namespace App\Domains\Ad;
 
 use App\Support\BaseRepository;
 use App\Support\Traits\CrudMethods;

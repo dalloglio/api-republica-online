@@ -2,40 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Domains\Users\UserRepository;
+use App\Domains\User\UserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $users;
+    protected $user;
 
-    public function __construct(UserRepository $users)
+    public function __construct(UserRepository $user)
     {
-        $this->users = $users;
+        $this->user = $user;
     }
 
     public function index()
     {
-        return $this->users->getAll();
+        return $this->user->getAll();
     }
 
     public function store(Request $request)
     {
-        return $this->users->create($request->all());
+        return $this->user->create($request->all());
     }
 
     public function show($id)
     {
-        return $this->users->findById($id);
+        return $this->user->findById($id);
     }
 
     public function update(Request $request, $id)
     {
-        return $this->users->edit($request->all(), $id);
+        return $this->user->edit($request->all(), $id);
     }
 
     public function destroy($id)
     {
-        return $this->users->destroy($id);
+        return $this->user->destroy($id);
     }
 }

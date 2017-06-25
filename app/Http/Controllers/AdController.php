@@ -2,40 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Domains\Ads\AdRepository;
+use App\Domains\Ad\AdRepository;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
-    protected $ads;
+    protected $ad;
 
-    public function __construct(AdRepository $ads)
+    public function __construct(AdRepository $ad)
     {
-        $this->ads = $ads;
+        $this->ad = $ad;
     }
 
     public function index()
     {
-        return $this->ads->getAll();
+        return $this->ad->getAll();
     }
 
     public function store(Request $request)
     {
-        return $this->ads->create($request->all());
+        return $this->ad->create($request->all());
     }
 
     public function show($id)
     {
-        return $this->ads->findById($id);
+        return $this->ad->findById($id);
     }
 
     public function update(Request $request, $id)
     {
-        return $this->ads->edit($request->all(), $id);
+        return $this->ad->edit($request->all(), $id);
     }
 
     public function destroy($id)
     {
-        return $this->ads->destroy($id);
+        return $this->ad->destroy($id);
     }
 }

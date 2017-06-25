@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AdsTableSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class AdsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Domains\Ad\Ad::class, 10)->create();
+        factory(\App\Domains\Category\Category::class)->create();
     }
 }

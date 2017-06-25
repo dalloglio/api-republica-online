@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Users;
+namespace App\Domains\User;
 
 use App\Support\BaseRepository;
 use App\Support\Traits\CrudMethods;
