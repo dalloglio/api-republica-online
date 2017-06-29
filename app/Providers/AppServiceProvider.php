@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Domains\Photo\Photo;
 use App\Domains\User\User;
+use App\Observers\PhotoObserver;
 use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        Photo::observe(PhotoObserver::class);
     }
 
     /**

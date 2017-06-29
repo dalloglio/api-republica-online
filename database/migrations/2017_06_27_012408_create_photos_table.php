@@ -20,7 +20,7 @@ class CreatePhotosTable extends Migration
             $table->string('photo');
             $table->string('name')->nullable();
             $table->string('type')->nullable();
-            $table->string('size')->unsigned()->nullable();
+            $table->integer('size')->unsigned()->nullable();
             $table->string('url')->nullable();
             $table->softDeletes();
             $table->timestamps();
