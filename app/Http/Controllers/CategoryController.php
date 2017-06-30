@@ -3,39 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Domains\Category\CategoryRepository;
-use Illuminate\Http\Request;
+use App\Support\Traits\CrudController;
 
 class CategoryController extends Controller
 {
-    protected $category;
+    use CrudController;
 
-    public function __construct(CategoryRepository $category)
-    {
-        $this->category = $category;
-    }
+    protected $repository;
 
-    public function index()
+    public function __construct(CategoryRepository $repository)
     {
-        return $this->category->getAll();
-    }
-
-    public function store(Request $request)
-    {
-        return $this->category->create($request->all());
-    }
-
-    public function show($id)
-    {
-        return $this->category->findById($id);
-    }
-
-    public function update(Request $request, $id)
-    {
-        return $this->category->edit($request->all(), $id);
-    }
-
-    public function destroy($id)
-    {
-        return $this->category->destroy($id);
+        $this->repository = $repository;
     }
 }

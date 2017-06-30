@@ -3,39 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Domains\Photo\PhotoRepository;
-use Illuminate\Http\Request;
+use App\Support\Traits\CrudController;
 
 class PhotoController extends Controller
 {
-    protected $photo;
+    use CrudController;
+    
+    protected $repository;
 
-    public function __construct(PhotoRepository $photo)
+    public function __construct(PhotoRepository $repository)
     {
-        $this->photo = $photo;
-    }
-
-    public function index()
-    {
-        return $this->photo->getAll();
-    }
-
-    public function store(Request $request)
-    {
-        return $this->photo->create($request->all());
-    }
-
-    public function show($id)
-    {
-        return $this->photo->findById($id);
-    }
-
-    public function update(Request $request, $id)
-    {
-        return $this->photo->edit($request->all(), $id);
-    }
-
-    public function destroy($id)
-    {
-        return $this->photo->destroy($id);
+        $this->repository = $repository;
     }
 }
