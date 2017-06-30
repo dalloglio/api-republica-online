@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Domains\Category;
+namespace App\Domains\Video;
 
 use App\Support\BaseRepository;
 use App\Support\Traits\CrudMethods;
 
-class CategoryRepository extends BaseRepository
+class VideoRepository extends BaseRepository
 {
     use CrudMethods;
 
     /**
      * @var string
      */
-    protected $modelClass = Category::class;
+    protected $modelClass = Video::class;
 }
