@@ -27,12 +27,13 @@ trait CrudMethods
     }
 
     /**
-     * @param Model $model
      * @param array $data
-     * @return Model
+     * @param int $id
+     * @return bool
      */
-    public function update(Model $model, array $data = [])
+    public function update(array $data = [], $id)
     {
+        $model = $this->findById($id);
         $this->setModelData($model, $data);
         $this->save($model);
         return $model;
@@ -59,11 +60,12 @@ trait CrudMethods
     }
 
     /**
-     * @param Model $model
-     * @return Model
+     * @param $id
+     * @return mixed
      */
-    public function delete(Model $model)
+    public function delete($id)
     {
+        $model = $this->findById($id);
         $model->delete();
         return $model;
     }

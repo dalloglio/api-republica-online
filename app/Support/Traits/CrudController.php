@@ -23,11 +23,11 @@ trait CrudController
 
     public function update(Request $request, $id)
     {
-        return $this->repository->edit($request->all(), $id);
+        return $this->repository->update($request->all(), $id);
     }
 
     public function destroy($id)
     {
-        return $this->repository->destroy($id);
+        return $this->repository->delete($id);
     }
 }
