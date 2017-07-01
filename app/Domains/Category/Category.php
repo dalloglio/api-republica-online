@@ -9,6 +9,9 @@ class Category extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'slug',
         'title',
@@ -16,5 +19,8 @@ class Category extends Model
         'status',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 }
