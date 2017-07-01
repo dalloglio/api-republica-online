@@ -20,6 +20,12 @@ class UsersTableSeeder extends Seeder
             'email' => 'ricardo.tech@live.com',
             'password' => bcrypt('123456'),
             'status' => 1
-        ]);
+        ])->each(function ($user) {
+            $address = factory(\App\Domains\Address\Address::class)->make();
+            $user->address()->save($address);
+
+            $photo = factory(\App\Domains\Photo\Photo::class)->make();
+            $user->photo()->save($photo);
+        });
     }
 }
