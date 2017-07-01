@@ -2,6 +2,7 @@
 
 namespace App\Domains\User;
 
+use App\Domains\Ad\Ad;
 use App\Domains\Address\Address;
 use App\Domains\Photo\Photo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,5 +69,13 @@ class User extends Authenticatable
     public function photo()
     {
         return $this->morphOne(Photo::class, 'photoable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
     }
 }

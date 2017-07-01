@@ -3,7 +3,9 @@
 namespace App\Domains\Ad;
 
 use App\Domains\Address\Address;
+use App\Domains\Category\Category;
 use App\Domains\Photo\Photo;
+use App\Domains\User\User;
 use App\Domains\Video\Video;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +23,7 @@ class Ad extends Model
         'description',
         'content',
         'price',
+        'category_id',
         'user_id',
         'begin',
         'end',
@@ -70,5 +73,21 @@ class Ad extends Model
     public function videos()
     {
         return $this->morphMany(Video::class, 'videoable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

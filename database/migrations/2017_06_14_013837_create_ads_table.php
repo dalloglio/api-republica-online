@@ -24,9 +24,9 @@ class CreateAdsTable extends Migration
             $table->timestamp('begin')->nullable();
             $table->timestamp('end')->nullable();
             $table->unsignedTinyInteger('status')->default(0);
-            // $table->unsignedInteger('category_id')->unsigned()->index();
+            $table->unsignedInteger('category_id')->unsigned()->index();
             $table->unsignedInteger('user_id')->index();
-            // $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
