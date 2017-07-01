@@ -23,4 +23,12 @@ class Category extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
 }
