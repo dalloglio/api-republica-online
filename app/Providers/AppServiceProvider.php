@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Domains\Ad\Ad;
 use App\Domains\Photo\Photo;
 use App\Domains\User\User;
 use App\Observers\PhotoObserver;
 use App\Observers\UserObserver;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Relation::morphMap([
+            'ads' => Ad::class,
+            'users' => User::class,
+        ]);
+
         User::observe(UserObserver::class);
         Photo::observe(PhotoObserver::class);
     }

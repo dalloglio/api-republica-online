@@ -9,6 +9,9 @@ class Address extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'zip_code',
         'street',
@@ -20,5 +23,16 @@ class Address extends Model
         'city',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function addressable()
+    {
+        return $this->morphTo();
+    }
 }
