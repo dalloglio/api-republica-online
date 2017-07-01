@@ -2,6 +2,8 @@
 
 namespace App\Domains\User;
 
+use App\Domains\Address\Address;
+use App\Domains\Photo\Photo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,6 +17,9 @@ class User extends Authenticatable
 
     const GENDER_FEMALE = 'Female';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name',
         'first_name',
@@ -26,17 +31,42 @@ class User extends Authenticatable
         'status'
     ];
 
+    /**
+     * @var array
+     */
     protected $hidden = [
         'deleted_at', 'password', 'remember_token',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
+    /**
+     * @return array
+     */
     public static function genders()
     {
         return [
             self::GENDER_MALE,
             self::GENDER_FEMALE,
         ];
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function photo()
+    {
+        return $this->morphOne(Photo::class, 'photoable');
     }
 }
