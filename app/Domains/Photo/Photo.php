@@ -9,6 +9,9 @@ class Photo extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'title',
         'description',
@@ -19,5 +22,16 @@ class Photo extends Model
         'url',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function photoable()
+    {
+        return $this->morphTo();
+    }
 }
