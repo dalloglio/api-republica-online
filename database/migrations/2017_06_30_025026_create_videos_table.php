@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('url');
-            $table->morphs('videoable');
+            $table->nullableMorphs('videoable');
             $table->softDeletes();
             $table->timestamps();
         });

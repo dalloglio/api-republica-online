@@ -22,7 +22,7 @@ class CreatePhotosTable extends Migration
             $table->string('type')->nullable();
             $table->integer('size')->unsigned()->nullable();
             $table->string('url')->nullable();
-            $table->morphs('photoable');
+            $table->nullableMorphs('photoable');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -23,7 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('country');
             $table->string('state');
             $table->string('city');
-            $table->morphs('addressable');
+            $table->nullableMorphs('addressable');
             $table->softDeletes();
             $table->timestamps();
         });
