@@ -11,6 +11,11 @@ class FiltersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Domains\Filter\Filter::class, 10)->create();
+        factory(\App\Domains\Filter\Filter::class, 10)
+            ->create()
+            ->each(function ($filter) {
+                $input = factory(\App\Domains\Filter\Input::class, 3)->make();
+                $filter->inputs()->saveMany($input);
+            });
     }
 }

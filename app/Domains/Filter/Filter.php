@@ -25,4 +25,12 @@ class Filter extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function inputs()
+    {
+        return $this->hasMany(Input::class);
+    }
 }
