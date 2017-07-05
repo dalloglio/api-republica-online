@@ -33,4 +33,32 @@ class Filter extends Model
     {
         return $this->hasMany(Input::class);
     }
+
+    /**
+     * @param $value
+     */
+    public function setValuesAttribute($value)
+    {
+        if ($this->attributes['type'] == 'number') {
+            $array = explode('...', '1...4');
+            $range = range($array[0], $array[1]);
+            $keys = collect($range);
+            $values = $keys->combine($range);
+        } else {
+            $values = collect($value);
+        }
+        $this->attributes['values'] = $values->toJson();
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getValuesAttribute($value)
+    {
+        if ($value) {
+            $value = json_decode($value, true);
+        }
+        return $value;
+    }
 }

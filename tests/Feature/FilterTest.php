@@ -17,7 +17,7 @@ class FilterTest extends TestCase
         $this->modelClass = Filter::class;
         $this->endpoint = 'filters';
     }
-
+    
     public function testUpdate()
     {
         $model = factory($this->modelClass)->create();
