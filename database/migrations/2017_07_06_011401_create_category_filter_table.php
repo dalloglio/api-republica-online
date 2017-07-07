@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInputsTable extends Migration
+class CreateCategoryFilterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateInputsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inputs', function (Blueprint $table) {
+        Schema::create('category_filter', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('key');
-            $table->string('value');
+            $table->unsignedInteger('category_id')->index();
             $table->unsignedInteger('filter_id')->index();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('filter_id')->references('id')->on('filters');
             $table->softDeletes();
             $table->timestamps();
@@ -32,6 +31,6 @@ class CreateInputsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inputs');
+        Schema::dropIfExists('category_filter');
     }
 }

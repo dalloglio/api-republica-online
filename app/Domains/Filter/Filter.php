@@ -2,6 +2,7 @@
 
 namespace App\Domains\Filter;
 
+use App\Domains\Category\Category;
 use App\Domains\Filter\Traits\Types;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,6 +33,14 @@ class Filter extends Model
     public function inputs()
     {
         return $this->hasMany(Input::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 
     /**

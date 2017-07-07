@@ -2,6 +2,7 @@
 
 namespace App\Domains\Category;
 
+use App\Domains\Filter\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,5 +31,13 @@ class Category extends Model
     public function ads()
     {
         return $this->hasMany(Ad::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function filters()
+    {
+        return $this->belongsToMany(Filter::class);
     }
 }
