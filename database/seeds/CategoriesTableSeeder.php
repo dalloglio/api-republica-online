@@ -11,6 +11,11 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Domains\Category\Category::class)->create();
+        factory(\App\Domains\Category\Category::class, 5)
+            ->create()
+            ->each(function ($category) {
+                $filters = factory(App\Domains\Filter\Filter::class, 3)->make();
+                $category->filters()->saveMany($filters);
+            });
     }
 }
