@@ -22,19 +22,23 @@ class DetailObserver
 
             $details->each(function ($item, $key) use ($ad) {
                 $category = Category::find($ad->category_id);
-                $filter = $category->filters()->find($item['filter_id']);
-                $input = $filter->inputs()->find($item['input_id']);
+                if ($category) {
+                    $filter = $category->filters()->find($item['filter_id']);
+                    if ($filter) {
+                        $input = $filter->inputs()->find($item['input_id']);
 
-                $item['category'] = $category->slug;
-                $item['filter'] = $filter->slug;
-                $item['input'] = $input->key;
+                        $item['category'] = $category->slug;
+                        $item['filter'] = $filter->slug;
+                        $item['input'] = $input->key;
 
-                if ($filter->type == 'price') {
-                    $item['price'] = (double) $item['value'];
+                        if ($filter->type == 'price') {
+                            $item['price'] = (double) $item['value'];
+                        }
+
+                        $detail = new Detail($item);
+                        $ad->details()->save($detail);
+                    }
                 }
-
-                $detail = new Detail($item);
-                $ad->details()->save($detail);
             });
 
         }

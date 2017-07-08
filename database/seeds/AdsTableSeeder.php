@@ -11,7 +11,7 @@ class AdsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Domains\Ad\Ad::class, 10)
+        factory(\App\Domains\Ad\Ad::class, 5)
             ->create()
             ->each(function ($ad) {
                 $address = factory(\App\Domains\Address\Address::class)->make();
