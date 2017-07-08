@@ -12,6 +12,10 @@ $factory->define(\App\Domains\Ad\Detail::class, function (Faker\Generator $faker
         'category_id' => $ad->category->id,
         'filter_id' => $filter->id,
         'input_id' => $input->id,
-        'value' => $input->value
+        'category' => $ad->category->slug,
+        'filter' => $filter->slug,
+        'input' => $input->key,
+        'value' => $input->value,
+        'price' => $filter->type == 'price' ? (double) $input->value : null
     ];
 });

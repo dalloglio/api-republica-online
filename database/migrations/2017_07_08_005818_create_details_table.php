@@ -19,6 +19,9 @@ class CreateDetailsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('filter_id');
             $table->unsignedInteger('input_id');
+            $table->string('category');
+            $table->string('filter');
+            $table->string('input');
             $table->string('value');
             $table->decimal('price', 8, 2)->nullable();
             $table->foreign('ad_id')->references('id')->on('ads');
