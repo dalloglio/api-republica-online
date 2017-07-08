@@ -14,7 +14,6 @@ class CreateCategoryFilterTable extends Migration
     public function up()
     {
         Schema::create('category_filter', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->unsignedInteger('category_id')->index();
             $table->unsignedInteger('filter_id')->index();
             $table->foreign('category_id')->references('id')->on('categories');

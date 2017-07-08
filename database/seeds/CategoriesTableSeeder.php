@@ -14,7 +14,7 @@ class CategoriesTableSeeder extends Seeder
         factory(\App\Domains\Category\Category::class, 5)
             ->create()
             ->each(function ($category) {
-                $filters = factory(App\Domains\Filter\Filter::class, 3)->make();
+                $filters = factory(\App\Domains\Filter\Filter::class, 3)->make();
                 $category->filters()->saveMany($filters);
             });
     }
