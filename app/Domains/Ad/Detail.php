@@ -30,6 +30,6 @@ class Detail extends Model
      */
     public function ad()
     {
-        return $this->belongsTo(Ad::class)-create
+        return $this->belongsTo(Ad::class);
     }
 }

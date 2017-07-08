@@ -92,10 +92,10 @@ class Ad extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function details()
     {
-        return $this->belongsToMany('Ad');
+        return $this->hasMany(Detail::class);
     }
 }
