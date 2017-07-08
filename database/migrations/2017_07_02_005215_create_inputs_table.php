@@ -14,7 +14,6 @@ class CreateInputsTable extends Migration
     public function up()
     {
         Schema::create('inputs', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('key');
             $table->string('value');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryFilterTable extends Migration
+class CreateDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,17 @@ class CreateCategoryFilterTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_filter', function (Blueprint $table) {
-            $table->unsignedInteger('category_id')->index();
-            $table->unsignedInteger('filter_id')->index();
+        Schema::create('details', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('ad_id');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('filter_id');
+            $table->unsignedInteger('input_id');
+            $table->string('value');
+            $table->foreign('ad_id')->references('id')->on('ads');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('filter_id')->references('id')->on('filters');
+            $table->foreign('input_id')->references('id')->on('inputs');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +36,6 @@ class CreateCategoryFilterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_filter');
+        Schema::dropIfExists('details');
     }
 }
