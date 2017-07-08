@@ -2,7 +2,7 @@
 
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Domains\Ad\Ad::class, function (Faker\Generator $faker) {
+$factory->define(\App\Domains\Ad\Ad::class, function (Faker\Generator $faker) {
     return [
         'slug' => str_slug($faker->sentence(6)),
         'title' => $faker->sentence(6),
