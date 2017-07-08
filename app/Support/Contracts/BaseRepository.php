@@ -20,7 +20,7 @@ interface BaseRepository
      * @param bool $fail
      * @return Model
      */
-    public function findByID($id, $fail = true);
+    public function findById($id, $fail = true);
 
     /**
      * @param string $column
