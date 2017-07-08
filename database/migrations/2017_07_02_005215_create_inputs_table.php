@@ -16,7 +16,7 @@ class CreateInputsTable extends Migration
         Schema::create('inputs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key');
-            $table->string('value');
+            $table->string('value')->nullable();
             $table->unsignedInteger('filter_id')->index();
             $table->foreign('filter_id')->references('id')->on('filters');
             $table->softDeletes();

@@ -8,7 +8,8 @@ trait Types
         'checkbox' => 'Checkbox',
         'number' => 'Number',
         'radio' => 'Radio',
-        'select' => 'Select'
+        'select' => 'Select',
+        'price' => 'Preço'
     ];
 
     protected static function types()
