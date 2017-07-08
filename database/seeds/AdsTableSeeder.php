@@ -28,6 +28,9 @@ class AdsTableSeeder extends Seeder
 
                 $videos = factory(\App\Domains\Video\Video::class, 4)->make();
                 $ad->videos()->saveMany($videos);
+
+                $details = factory(\App\Domains\Ad\Detail::class, 4)->make();
+                $ad->details()->saveMany($details);
             });
     }
 }
