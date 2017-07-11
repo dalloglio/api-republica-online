@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Ad\Ad;
+use App\Domains\Ad\Observers\AddressObserver;
 use App\Domains\Ad\Observers\DetailObserver;
 use App\Domains\Filter\Filter;
 use App\Domains\Photo\Photo;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
             'users' => User::class,
         ]);
 
+        Ad::observe(AddressObserver::class);
         Ad::observe(DetailObserver::class);
 
         Filter::observe(FilterObserver::class);

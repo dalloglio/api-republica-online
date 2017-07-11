@@ -3,7 +3,6 @@
 namespace App\Domains\Ad\Observers;
 
 use App\Domains\Ad\Ad;
-use App\Domains\Ad\Detail;
 use App\Domains\Category\Category;
 
 class DetailObserver
