@@ -16,8 +16,12 @@ class Detail extends Model
         'ad_id',
         'category_id',
         'filter_id',
+        'input_id',
+        'category',
+        'filter',
         'input',
-        'value'
+        'value',
+        'price'
     ];
 
     /**
