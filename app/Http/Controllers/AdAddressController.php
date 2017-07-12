@@ -14,6 +14,11 @@ class AdAddressController extends Controller
         $this->repository = $repository;
     }
 
+    public function index($ad_id)
+    {
+        return $this->repository->findById((int) $ad_id)->address;
+    }
+
     public function store(Request $request, $ad_id)
     {
         return $this->repository->findById((int) $ad_id)->address()->create($request->all());
