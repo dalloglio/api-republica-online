@@ -26,6 +26,14 @@ class Address extends Model
     /**
      * @var array
      */
+    protected $hidden = [
+        'addressable_id',
+        'addressable_type'
+    ];
+
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
 
     /**
