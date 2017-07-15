@@ -31,6 +31,9 @@ class AdsTableSeeder extends Seeder
 
                 $details = factory(\App\Domains\Ad\Detail::class, 2)->make();
                 $ad->details()->saveMany($details);
+
+                $contact = factory(\App\Domains\Contact\Contact::class)->make();
+                $ad->contact()->save($contact);
             });
     }
 }
