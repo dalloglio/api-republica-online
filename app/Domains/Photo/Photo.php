@@ -22,6 +22,11 @@ class Photo extends Model
         'url',
     ];
 
+    protected $hidden = [
+        'photoable_id',
+        'photoable_type'
+    ];
+
     /**
      * @var array
      */
