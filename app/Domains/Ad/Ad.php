@@ -4,6 +4,7 @@ namespace App\Domains\Ad;
 
 use App\Domains\Address\Address;
 use App\Domains\Category\Category;
+use App\Domains\Contact\Contact;
 use App\Domains\Photo\Photo;
 use App\Domains\User\User;
 use App\Domains\Video\Video;
@@ -97,5 +98,13 @@ class Ad extends Model
     public function details()
     {
         return $this->hasMany(Detail::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function contact()
+    {
+        return $this->morphOne(Contact::class, 'contactable');
     }
 }
