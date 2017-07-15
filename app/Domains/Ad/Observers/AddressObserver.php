@@ -36,6 +36,8 @@ class AddressObserver
      */
     public function deleted(Ad $ad)
     {
-        $ad->address->delete();
+        if ($ad->address) {
+            $ad->address->delete();
+        }
     }
 }
