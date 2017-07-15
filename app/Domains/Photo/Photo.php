@@ -2,6 +2,7 @@
 
 namespace App\Domains\Photo;
 
+use App\Domains\Photo\Observers\PhotoObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,7 +23,11 @@ class Photo extends Model
         'url',
     ];
 
+    /**
+     * @var array
+     */
     protected $hidden = [
+        'deleted_at',
         'photoable_id',
         'photoable_type'
     ];
@@ -31,6 +36,17 @@ class Photo extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(PhotoObserver::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo

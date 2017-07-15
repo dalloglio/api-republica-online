@@ -5,6 +5,7 @@ namespace App\Domains\User;
 use App\Domains\Ad\Ad;
 use App\Domains\Address\Address;
 use App\Domains\Photo\Photo;
+use App\Domains\User\Observers\UserObserver;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,6 +44,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(UserObserver::class);
+    }
 
     /**
      * @return array

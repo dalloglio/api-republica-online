@@ -3,6 +3,7 @@
 namespace App\Domains\Filter;
 
 use App\Domains\Category\Category;
+use App\Domains\Filter\Observers\FilterObserver;
 use App\Domains\Filter\Traits\Types;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,7 +26,23 @@ class Filter extends Model
     /**
      * @var array
      */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(FilterObserver::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

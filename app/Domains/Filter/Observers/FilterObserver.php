@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Observers;
+namespace App\Domains\Filter\Observers;
 
 use App\Domains\Filter\Filter;
 

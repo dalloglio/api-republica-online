@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Observers;
+namespace App\Domains\User\Observers;
 
 use App\Domains\User\User;
 

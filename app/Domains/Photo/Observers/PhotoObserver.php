@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Observers;
+namespace App\Domains\Photo\Observers;
 
 use App\Domains\Photo\Photo;
 use Illuminate\Http\UploadedFile;
