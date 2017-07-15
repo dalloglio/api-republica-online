@@ -4,13 +4,10 @@ namespace App\Domains\Ad\Observers;
 
 use App\Domains\Ad\Ad;
 
-class AddressObserver
+class ContactObserver
 {
     private $request;
 
-    /**
-     * DetailObserver constructor.
-     */
     public function __construct()
     {
         $this->request = request();
@@ -21,12 +18,12 @@ class AddressObserver
      */
     public function saved(Ad $ad)
     {
-        if ($this->request->has('address')) {
-            $address = $this->request->address;
-            if (is_null($ad->address)) {
-                $ad->address()->create($address);
+        if ($this->request->has('contact')) {
+            $contact = $this->request->contact;
+            if ($ad->contact) {
+                $ad->contact()->update($contact);
             } else {
-                $ad->address()->update($address);
+                $ad->contact()->create($contact);
             }
         }
     }
@@ -36,8 +33,8 @@ class AddressObserver
      */
     public function deleted(Ad $ad)
     {
-        if ($ad->address) {
-            $ad->address->delete();
+        if ($ad->contact) {
+            $ad->contact->delete();
         }
     }
 }
