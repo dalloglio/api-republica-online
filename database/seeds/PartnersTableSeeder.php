@@ -11,6 +11,11 @@ class PartnersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Domains\Partner\Partner::class, 10)->create();
+        factory(\App\Domains\Partner\Partner::class, 10)
+            ->create()
+            ->each(function ($partner) {
+                $photo = factory(\App\Domains\Photo\Photo::class)->make();
+                $partner->photo()->save($photo);
+            });
     }
 }
