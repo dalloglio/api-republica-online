@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Ad\Ad;
+use App\Domains\Partner\Partner;
 use App\Domains\User\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'ads' => Ad::class,
+            'partners' => Partner::class,
             'users' => User::class,
         ]);
     }
