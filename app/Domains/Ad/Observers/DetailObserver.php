@@ -25,13 +25,12 @@ class DetailObserver
         if ($this->request->has('details')) {
             $details = collect($this->request->details);
 
-            $details->each(function ($item, $key) use ($ad) {
+            $details->each(function ($item) use ($ad) {
                 $category = Category::find($ad->category_id);
                 if ($category) {
                     $filter = $category->filters()->find($item['filter_id']);
                     if ($filter) {
                         $input = $filter->inputs()->find($item['input_id']);
-
 
                         $item['category'] = $category->slug;
                         $item['filter'] = $filter->slug;
