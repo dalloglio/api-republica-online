@@ -2,6 +2,10 @@
 
 namespace App\Domains\Ad;
 
+use App\Domains\Ad\Observers\AddressObserver;
+use App\Domains\Ad\Observers\ContactObserver;
+use App\Domains\Ad\Observers\DetailObserver;
+use App\Domains\Ad\Observers\PhotoObserver;
 use App\Domains\Address\Address;
 use App\Domains\Category\Category;
 use App\Domains\Contact\Contact;
@@ -34,7 +38,26 @@ class Ad extends Model
     /**
      * @var array
      */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * @var array
+     */
     protected $dates = ['deleted_at'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(AddressObserver::class);
+        static::observe(ContactObserver::class);
+        static::observe(DetailObserver::class);
+        static::observe(PhotoObserver::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne

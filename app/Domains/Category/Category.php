@@ -2,6 +2,7 @@
 
 namespace App\Domains\Category;
 
+use App\Domains\Ad\Ad;
 use App\Domains\Filter\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +20,11 @@ class Category extends Model
         'description',
         'status',
     ];
+
+    /**
+     * @var array
+     */
+    protected $hidden = ['deleted_at'];
 
     /**
      * @var array

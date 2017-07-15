@@ -3,16 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Ad\Ad;
-use App\Domains\Ad\Observers\AddressObserver;
-use App\Domains\Ad\Observers\ContactObserver;
-use App\Domains\Ad\Observers\DetailObserver;
-use App\Domains\Ad\Observers\PhotoObserver as AdPhotoObserver;
-use App\Domains\Filter\Filter;
-use App\Domains\Photo\Photo;
 use App\Domains\User\User;
-use App\Observers\FilterObserver;
-use App\Observers\PhotoObserver;
-use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,15 +20,6 @@ class AppServiceProvider extends ServiceProvider
             'ads' => Ad::class,
             'users' => User::class,
         ]);
-
-        Ad::observe(AddressObserver::class);
-        Ad::observe(ContactObserver::class);
-        Ad::observe(DetailObserver::class);
-        Ad::observe(AdPhotoObserver::class);
-
-        Filter::observe(FilterObserver::class);
-        Photo::observe(PhotoObserver::class);
-        User::observe(UserObserver::class);
     }
 
     /**

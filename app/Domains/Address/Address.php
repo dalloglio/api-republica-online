@@ -27,6 +27,7 @@ class Address extends Model
      * @var array
      */
     protected $hidden = [
+        'deleted_at',
         'addressable_id',
         'addressable_type'
     ];
