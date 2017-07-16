@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Domains\Contact\Contact;
 use App\Domains\Form\Form;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -91,6 +92,23 @@ class FormContactTest extends TestCase
         // check contact created
         $this->sub_resource_id = $response->json()['id'];
         $response = $this->json('DELETE', $this->prepareEndpoint());
+        $response->assertStatus(200)->assertJson($contact->toArray());
+    }
+
+    public function testCreateWithFile()
+    {
+        // create form
+        $model = factory($this->modelClass)->create();
+        $this->resource_id = $model->id;
+
+        // create contact
+        $contact = factory(Contact::class)->make();
+
+        $file = UploadedFile::fake()->create('resume.pdf', 50);
+        $contact->setAttribute('file', $file);
+
+        $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
+        $contact->file = null;
         $response->assertStatus(200)->assertJson($contact->toArray());
     }
 
