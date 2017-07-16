@@ -31,6 +31,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::resource('ads.photos', 'AdPhotoController', ['except' => $exceptRoutes]);
     Route::resource('contacts', 'ContactController', ['except' => $exceptRoutes]);
     Route::resource('categories', 'CategoryController', ['except' => $exceptRoutes]);
+    Route::resource('files', 'FileController', ['except' => $exceptRoutes]);
     Route::resource('filters', 'FilterController', ['except' => $exceptRoutes]);
     Route::resource('partners', 'PartnerController', ['except' => $exceptRoutes]);
     Route::resource('photos', 'PhotoController', ['except' => $exceptRoutes]);
