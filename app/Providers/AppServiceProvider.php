@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Ad\Ad;
+use App\Domains\Banner\Banner;
 use App\Domains\Contact\Contact;
 use App\Domains\Form\Form;
 use App\Domains\Partner\Partner;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'ads' => Ad::class,
+            'banners' => Banner::class,
             'contacts' => Contact::class,
             'forms' => Form::class,
             'partners' => Partner::class,
