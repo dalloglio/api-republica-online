@@ -9,6 +9,8 @@ class Favorite extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = ['ad_id'];
+
     /**
      * @var array
      */
