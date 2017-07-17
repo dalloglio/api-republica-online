@@ -25,6 +25,7 @@ class CreateContactsTable extends Migration
             $table->string('subject')->nullable();
             $table->string('role')->nullable();
             $table->text('about')->nullable();
+            $table->text('message')->nullable();
             $table->nullableMorphs('contactable');
             $table->softDeletes();
             $table->timestamps();
