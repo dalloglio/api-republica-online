@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Domains\Ad\AdRepository;
+use App\Mail\AdContacted;
 use Illuminate\Http\Request;
+use Mail;
 
 class AdContactController extends Controller
 {
@@ -51,7 +53,12 @@ class AdContactController extends Controller
      */
     public function store(Request $request, $ad_id)
     {
-        return $this->repository->findById((int) $ad_id)->contacts()->create($request->all());
+        $ad = $this->repository->findById((int) $ad_id);
+        $contact = $ad->contacts()->create($request->all());
+        if ($contact) {
+            Mail::to($request->email)->send(new AdContacted($ad, $contact));
+            return $contact;
+        }
     }
 
     public function update(Request $request, $ad_id, $contact_id)
