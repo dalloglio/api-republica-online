@@ -4,6 +4,7 @@ namespace App\Domains\User;
 
 use App\Domains\Ad\Ad;
 use App\Domains\Address\Address;
+use App\Domains\Favorite\Favorite;
 use App\Domains\Photo\Photo;
 use App\Domains\User\Observers\UserObserver;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -62,8 +63,8 @@ class User extends Authenticatable
     public static function genders()
     {
         return [
-            self::GENDER_MALE,
-            self::GENDER_FEMALE,
+            static::GENDER_MALE,
+            static::GENDER_FEMALE,
         ];
     }
 
@@ -89,5 +90,13 @@ class User extends Authenticatable
     public function ads()
     {
         return $this->hasMany(Ad::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favoritable');
     }
 }
