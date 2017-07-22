@@ -3,9 +3,9 @@
 
 Seu anúncio recebeu uma nova mensagem:
 
-Nome: {{ $contact->name }}
-E-mail: {{ $contact->email }}
-Mensagem: {{ $contact->message }}
+Nome: {{ $contact->name }}<br>
+E-mail: {{ $contact->email }}<br>
+Mensagem: {{ $contact->message }}<br>
 
 @component('mail::button', ['url' => $url, 'color' => 'blue'])
 Saiba mais

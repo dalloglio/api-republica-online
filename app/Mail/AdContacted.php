@@ -13,11 +13,11 @@ class AdContacted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $url = 'http://www.google.com/';
-
     public $ad;
 
     public $contact;
+
+    public $url;
 
     /**
      * Create a new message instance.
@@ -28,6 +28,7 @@ class AdContacted extends Mailable
     {
         $this->ad = $ad;
         $this->contact = $contact;
+        $this->url = 'http://republica.online/anuncio/' . $ad->slug;
     }
 
     /**
@@ -37,6 +38,7 @@ class AdContacted extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.ads.contacted');
+
+        return $this->markdown('emails.ads.contacted')->subject('[Nova Mensagem] Seu anúncio recebeu uma nova mensagem.');
     }
 }

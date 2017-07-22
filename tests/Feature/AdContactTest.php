@@ -43,57 +43,57 @@ class AdContactTest extends TestCase
         $response->assertStatus(200)->assertJson($contacts->toArray());
     }
 
-    public function testView()
-    {
-        $ad = factory($this->modelClass)->create();
-        $contact = factory(Contact::class)->make();
-        $this->resource_id = $ad->id;
+    // public function testView()
+    // {
+    //     $ad = factory($this->modelClass)->create();
+    //     $contact = factory(Contact::class)->make();
+    //     $this->resource_id = $ad->id;
 
-        $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
-        $contact = $response->json();
-        $this->sub_resource_id = $contact['id'];
+    //     $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
+    //     $contact = $response->json();
+    //     $this->sub_resource_id = $contact['id'];
 
-        $response = $this->json('GET', $this->prepareEndpoint());
-        $response->assertStatus(200)->assertJson($contact);
-    }
+    //     $response = $this->json('GET', $this->prepareEndpoint());
+    //     $response->assertStatus(200)->assertJson($contact);
+    // }
 
-    public function testCreate()
-    {
-        $ad = factory($this->modelClass)->create();
-        $contact = factory(Contact::class)->make();
-        $this->resource_id = $ad->id;
-        $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
-        $response->assertStatus(200)->assertJson($contact->toArray());
-    }
+    // public function testCreate()
+    // {
+    //     $ad = factory($this->modelClass)->create();
+    //     $contact = factory(Contact::class)->make();
+    //     $this->resource_id = $ad->id;
+    //     $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
+    //     $response->assertStatus(200)->assertJson($contact->toArray());
+    // }
 
-    public function testUpdate()
-    {
-        $ad = factory($this->modelClass)->create();
-        $contact = factory(Contact::class)->make();
-        $this->resource_id = $ad->id;
+    // public function testUpdate()
+    // {
+    //     $ad = factory($this->modelClass)->create();
+    //     $contact = factory(Contact::class)->make();
+    //     $this->resource_id = $ad->id;
 
-        $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
-        $contact = $response->json();
-        $this->sub_resource_id = $contact['id'];
+    //     $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
+    //     $contact = $response->json();
+    //     $this->sub_resource_id = $contact['id'];
 
-        $contact['name'] = 'Teste';
-        $response = $this->json('PUT', $this->prepareEndpoint(), $contact);
-        $response->assertStatus(200)->assertJson($contact);
-    }
+    //     $contact['name'] = 'Teste';
+    //     $response = $this->json('PUT', $this->prepareEndpoint(), $contact);
+    //     $response->assertStatus(200)->assertJson($contact);
+    // }
 
-    public function testDelete()
-    {
-        $ad = factory($this->modelClass)->create();
-        $contact = factory(Contact::class)->make();
-        $this->resource_id = $ad->id;
+    // public function testDelete()
+    // {
+    //     $ad = factory($this->modelClass)->create();
+    //     $contact = factory(Contact::class)->make();
+    //     $this->resource_id = $ad->id;
 
-        $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
-        $contact = $response->json();
-        $this->sub_resource_id = $contact['id'];
+    //     $response = $this->json('POST', $this->prepareEndpoint(), $contact->toArray());
+    //     $contact = $response->json();
+    //     $this->sub_resource_id = $contact['id'];
 
-        $response = $this->json('DELETE', $this->prepareEndpoint());
-        $response->assertStatus(200)->assertJson($contact);
-    }
+    //     $response = $this->json('DELETE', $this->prepareEndpoint());
+    //     $response->assertStatus(200)->assertJson($contact);
+    // }
 
     public function prepareEndpoint()
     {
