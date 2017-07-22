@@ -49,4 +49,16 @@ class Partner extends Model
     {
         return $this->morphOne(Photo::class, 'photoable');
     }
+
+    /**
+     * @param $title
+     */
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['slug'] = null;
+        if (!empty($title)) {
+            $this->attributes['slug'] = str_slug($title);
+        }
+        $this->attributes['title'] = $title;
+    }
 }
