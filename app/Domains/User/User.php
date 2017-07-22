@@ -47,6 +47,14 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'birthday' => 'date',
+        'status' => 'boolean',
+    ];
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
