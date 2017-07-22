@@ -130,4 +130,12 @@ class Ad extends Model
     {
         return $this->morphOne(Contact::class, 'contactable');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function contacts()
+    {
+        return $this->morphMany(Contact::class, 'contactable');
+    }
 }
