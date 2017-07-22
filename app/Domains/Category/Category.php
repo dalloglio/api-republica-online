@@ -32,6 +32,13 @@ class Category extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function ads()
@@ -45,5 +52,17 @@ class Category extends Model
     public function filters()
     {
         return $this->belongsToMany(Filter::class);
+    }
+
+    /**
+     * @param $title
+     */
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['slug'] = null;
+        if (!empty($title)) {
+            $this->attributes['slug'] = str_slug($title);
+        }
+        $this->attributes['title'] = $title;
     }
 }
