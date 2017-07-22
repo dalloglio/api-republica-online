@@ -107,4 +107,14 @@ class User extends Authenticatable
     {
         return $this->morphMany(Favorite::class, 'favoritable');
     }
+
+    /**
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        if (!empty($password)) {
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
 }
