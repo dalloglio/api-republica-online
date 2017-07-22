@@ -18,7 +18,7 @@ class CreateBannersTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('link')->nullable();
-            $table->enum('size', \App\Domains\Banner\Banner::sizes());
+            $table->enum('size', \App\Domains\Banner\Banner::keys());
             $table->softDeletes();
             $table->timestamps();
         });

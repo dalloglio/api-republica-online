@@ -7,6 +7,6 @@ $factory->define(\App\Domains\Banner\Banner::class, function (Faker\Generator $f
         'title' => $faker->words(3, true),
         'description' => $faker->words(6, true),
         'link' => $faker->url,
-        'size' => $faker->randomKey(\App\Domains\Banner\Banner::sizes())
+        'size' => $faker->randomElement(\App\Domains\Banner\Banner::keys())
     ];
 });
