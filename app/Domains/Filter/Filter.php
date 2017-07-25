@@ -34,6 +34,18 @@ class Filter extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * @param $title
+     */
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['slug'] = null;
+        if (!empty($title)) {
+            $this->attributes['slug'] = str_slug($title);
+        }
+        $this->attributes['title'] = $title;
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void

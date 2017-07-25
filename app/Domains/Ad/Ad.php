@@ -46,6 +46,13 @@ class Ad extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
@@ -137,5 +144,17 @@ class Ad extends Model
     public function contacts()
     {
         return $this->morphMany(Contact::class, 'contactable');
+    }
+
+    /**
+     * @param $title
+     */
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['slug'] = null;
+        if (!empty($title)) {
+            $this->attributes['slug'] = str_slug($title);
+        }
+        $this->attributes['title'] = $title;
     }
 }
