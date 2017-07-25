@@ -13,4 +13,9 @@ class PartnerRepository extends BaseRepository
      * @var string
      */
     protected $modelClass = Partner::class;
+
+    /**
+     * @var array
+     */
+    protected $relationships = ['photo'];
 }

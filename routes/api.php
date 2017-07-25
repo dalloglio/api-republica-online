@@ -39,6 +39,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::resource('forms', 'FormController', ['except' => $exceptRoutes]);
     Route::resource('forms.contacts', 'FormContactController', ['except' => $exceptRoutes]);
     Route::resource('partners', 'PartnerController', ['except' => $exceptRoutes]);
+    Route::resource('partners.photos', 'PartnerPhotoController', ['except' => $exceptRoutes]);
     Route::resource('photos', 'PhotoController', ['except' => $exceptRoutes]);
     Route::resource('users', 'UserController', ['except' => $exceptRoutes]);
     Route::resource('users.favorites', 'UserFavoriteController', ['except' => $exceptRoutes]);
