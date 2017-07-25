@@ -13,4 +13,9 @@ class BannerRepository extends BaseRepository
      * @var string
      */
     protected $modelClass = Banner::class;
+
+    /**
+     * @var array
+     */
+    protected $relationships = ['photo'];
 }

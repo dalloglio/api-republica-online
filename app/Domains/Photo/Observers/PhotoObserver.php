@@ -8,7 +8,7 @@ use Storage;
 
 class PhotoObserver
 {
-    protected $disk = 'public';
+    protected $disk = 'local';
 
     public function creating(Photo $photo)
     {

@@ -17,12 +17,17 @@ abstract class BaseRepository implements BaseRepositoryContract
     protected $modelClass;
 
     /**
+     * @var array
+     */
+    protected $relationships = [];
+
+    /**
      * @param EloquentQueryBuilder|QueryBuilder $query
      * @param int $take
      * @param bool $paginate
      * @return EloquentCollection|Paginator
      */
-    protected function doQuery($query = null, $take = 15, $paginate = true)
+    protected function doQuery($query = null, $take = 200, $paginate = true)
     {
         if (is_null($query)) {
             $query = $this->newQuery();
@@ -52,7 +57,7 @@ abstract class BaseRepository implements BaseRepositoryContract
      * @param bool $paginate
      * @return EloquentCollection|Paginator
      */
-    public function getAll($take = 15, $paginate = true)
+    public function getAll($take = 200, $paginate = true)
     {
         return $this->doQuery(null, $take, $paginate);
     }
@@ -76,8 +81,8 @@ abstract class BaseRepository implements BaseRepositoryContract
     {
         $id = (int) $id;
         if ($fail) {
-            return $this->newQuery()->findOrFail($id);
+            return $this->newQuery()->with($this->relationships)->findOrFail($id);
         }
-        return $this->newQuery()->find($id);
+        return $this->newQuery()->with($this->relationships)->find($id);
     }
 }

@@ -11,6 +11,11 @@ class Photo extends Model
     use SoftDeletes;
 
     /**
+     * @var string
+     */
+    protected $disk = 'local';
+
+    /**
      * @var array
      */
     protected $fillable = [

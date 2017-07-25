@@ -5,3 +5,5 @@ Route::get('teste', function() {
 
     dd($photo->toArray());
 });
+
+Route::get('photo/{id}', 'PhotoController@photo')->middleware('api');
