@@ -16,6 +16,11 @@ class UserRepository extends BaseRepository
     protected $modelClass = User::class;
 
     /**
+     * @var array
+     */
+    protected $relationships = ['photo'];
+
+    /**
      * @param int $limit
      * @param bool $paginate
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\AbstractPaginator

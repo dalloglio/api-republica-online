@@ -42,6 +42,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::resource('partners.photos', 'PartnerPhotoController', ['except' => $exceptRoutes]);
     Route::resource('photos', 'PhotoController', ['except' => $exceptRoutes]);
     Route::resource('users', 'UserController', ['except' => $exceptRoutes]);
+    Route::resource('users.photos', 'UserPhotoController', ['except' => $exceptRoutes]);
     Route::resource('users.favorites', 'UserFavoriteController', ['except' => $exceptRoutes]);
     Route::resource('videos', 'VideoController', ['except' => $exceptRoutes]);
 });
