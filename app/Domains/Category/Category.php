@@ -3,6 +3,7 @@
 namespace App\Domains\Category;
 
 use App\Domains\Ad\Ad;
+use App\Domains\Category\Observers\CategoryObserver;
 use App\Domains\Filter\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +40,17 @@ class Category extends Model
     ];
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(CategoryObserver::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function ads()
@@ -51,7 +63,7 @@ class Category extends Model
      */
     public function filters()
     {
-        return $this->belongsToMany(Filter::class);
+        return $this->belongsToMany(Filter::class)->withTimestamps();
     }
 
     /**

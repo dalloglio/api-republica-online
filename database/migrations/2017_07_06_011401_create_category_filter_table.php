@@ -18,7 +18,6 @@ class CreateCategoryFilterTable extends Migration
             $table->unsignedInteger('filter_id')->index();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('filter_id')->references('id')->on('filters');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
