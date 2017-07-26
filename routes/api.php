@@ -17,7 +17,7 @@ Route::get('/', function () {
     echo '<h2>Api República Online</h2>';
 });
 
-Route::group(['middleware' => ['api']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
 
     $exceptRoutes = ['create', 'edit'];
 
