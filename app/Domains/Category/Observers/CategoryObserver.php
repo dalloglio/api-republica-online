@@ -15,16 +15,8 @@ class CategoryObserver
         }
     }
 
-//    public function deleted(Filter $filter)
-//    {
-//        $this->deleteInputs($filter);
-//    }
-//
-//    /**
-//     * @param Filter $filter
-//     */
-//    public function deleteInputs(Filter $filter)
-//    {
-//        $filter->inputs()->where('filter_id', $filter->id)->delete();
-//    }
+   public function deleted(Category $category)
+   {
+       $category->filters()->detach();
+   }
 }
