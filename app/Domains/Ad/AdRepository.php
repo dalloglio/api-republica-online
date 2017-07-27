@@ -13,4 +13,9 @@ class AdRepository extends BaseRepository
      * @var string
      */
     protected $modelClass = Ad::class;
+
+    /**
+     * @var array
+     */
+    protected $relationships = ['user'];
 }
