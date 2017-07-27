@@ -13,4 +13,9 @@ class CategoryRepository extends BaseRepository
      * @var string
      */
     protected $modelClass = Category::class;
+
+    /**
+     * @var array
+     */
+    protected $relationships = ['filters'];
 }
