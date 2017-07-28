@@ -2,12 +2,13 @@
 
 namespace App\Domains\Address;
 
+use App\Domains\Address\Traits\ShowOnMap;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Address extends Model
 {
-    use SoftDeletes;
+    use ShowOnMap, SoftDeletes;
 
     /**
      * @var array
