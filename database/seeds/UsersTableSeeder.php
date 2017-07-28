@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'birthday' => '1989-05-22',
             'gender' => \App\Domains\User\User::GENDER_MALE,
             'email' => 'ricardo.tech@live.com',
-            'password' => bcrypt('123456'),
+            'password' => 123456,
             'status' => 1
         ])->each(function ($user) {
             $address = factory(\App\Domains\Address\Address::class)->make();

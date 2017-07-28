@@ -22,7 +22,7 @@ $factory->define(\App\Domains\User\User::class, function (Faker\Generator $faker
         'birthday' => $faker->date(),
         'gender' => $faker->randomElement(\App\Domains\User\User::genders()),
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = 'secret',
         'status' => mt_rand(0, 5),
         'remember_token' => str_random(10),
     ];
