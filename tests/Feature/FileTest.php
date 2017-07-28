@@ -7,7 +7,6 @@ use Illuminate\Http\UploadedFile;
 use Tests\Support\CrudMethods;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Storage;
 
 class FileTest extends TestCase
 {
