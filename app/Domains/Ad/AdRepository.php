@@ -17,5 +17,5 @@ class AdRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['address', 'contact', 'photos', 'user'];
+    protected $relationships = ['address', 'contact', 'details', 'photos', 'user'];
 }
