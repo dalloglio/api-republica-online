@@ -4,6 +4,7 @@ namespace App\Domains\Ad\Observers;
 
 use App\Domains\Ad\Ad;
 use App\Domains\Category\Category;
+use App\Domains\Filter\Input;
 
 class DetailObserver
 {
@@ -23,31 +24,35 @@ class DetailObserver
     public function saved(Ad $ad)
     {
         if ($this->request->has('details')) {
-            $details = collect($this->request->details);
 
-            $details->each(function ($item) use ($ad) {
+            $this->deleteOldDetails($ad);
+
+            $details = $this->request->details;
+
+            foreach ($details as $item) {
                 $category = Category::find($ad->category_id);
-                if ($category) {
-                    $filter = $category->filters()->find($item['filter_id']);
-                    if ($filter) {
-                        $input = $filter->inputs()->find($item['input_id']);
+                $input = Input::find($item);
+                if ($input && $category) {
+                    if ($input->filter) {
+                        $filter = $input->filter;
 
-                        $item['category'] = $category->slug;
-                        $item['filter'] = $filter->slug;
-                        $item['input'] = $input->key;
+                        $detail['category_id'] = $category->id;
+                        $detail['filter_id'] = $filter->id;
+                        $detail['input_id'] = $input->id;
+
+                        $detail['category'] = $category->slug;
+                        $detail['filter'] = $filter->slug;
+                        $detail['input'] = $input->key;
+                        $detail['value'] = $input->value;
 
                         if ($filter->type == 'price') {
-                            $item['price'] = (double) $item['value'];
+                            $detail['price'] = (double) $detail['value'];
                         }
 
-                        if (isset($item['id']) && (int) $item['id']) {
-                            $ad->details()->find($item['id'])->update($item);
-                        } else {
-                            $ad->details()->create($item);
-                        }
+                        $ad->details()->create($detail);
                     }
                 }
-            });
+            }
         }
     }
 
@@ -64,6 +69,8 @@ class DetailObserver
      */
     public function deleteOldDetails(Ad $ad)
     {
-        $ad->details()->where('ad_id', $ad->id)->delete();
+        foreach ($ad->details as $detail) {
+            $detail->delete();
+        }
     }
 }

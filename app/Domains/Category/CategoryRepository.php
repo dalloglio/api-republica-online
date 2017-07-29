@@ -17,5 +17,5 @@ class CategoryRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['filters'];
+    protected $relationships = ['filters.inputs'];
 }

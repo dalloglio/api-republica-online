@@ -13,4 +13,9 @@ class FilterRepository extends BaseRepository
      * @var string
      */
     protected $modelClass = Filter::class;
+
+    /**
+     * @var array
+     */
+    protected $relationships = ['inputs'];
 }
