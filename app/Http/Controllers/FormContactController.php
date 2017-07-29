@@ -47,7 +47,10 @@ class FormContactController extends Controller
      */
     public function show($form_id, $contact_id)
     {
-        return $this->repository->findById((int) $form_id)->contacts()->find((int) $contact_id);
+        $this->repository->setRelationships();
+        $contact = $this->repository->findById((int) $form_id)->contacts()->find((int) $contact_id);
+        $contact->contactable;
+        return $contact;
     }
 
     /**

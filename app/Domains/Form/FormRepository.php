@@ -13,4 +13,14 @@ class FormRepository extends BaseRepository
      * @var string
      */
     protected $modelClass = Form::class;
+
+    /**
+     * @var array
+     */
+    protected $relationships = ['contacts'];
+
+    public function setRelationships($relationships = [])
+    {
+    	$this->relationships = $relationships;
+    }
 }
