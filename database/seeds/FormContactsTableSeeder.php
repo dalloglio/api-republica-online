@@ -16,36 +16,17 @@ class FormContactsTableSeeder extends Seeder
 
         // Contatos
         $formContact = \App\Domains\Form\Form::find(1);
-        $contacts = factory(\App\Domains\Contact\Contact::class, 10)->make([
-            'name' => $faker->firstName,
-            'email' => $faker->freeEmail,
-            'phone' => $faker->phoneNumberCleared,
-            'city' => $faker->city,
-            'state' => $faker->stateAbbr,
-            'subject' => $faker->words(3, true),
-            'message' => $faker->paragraph
-        ]);
+        $contacts = factory(\App\Domains\Contact\Contact::class, 15)->make();
         $formContact->contacts()->saveMany($contacts);
 
         // Newsletters
         $formNewsletter = \App\Domains\Form\Form::find(2);
-        $contacts = factory(\App\Domains\Contact\Contact::class, 10)->make([
-            'name' => $faker->firstName,
-            'email' => $faker->freeEmail
-        ]);
+        $contacts = factory(\App\Domains\Contact\Contact::class, 10)->make();
         $formNewsletter->contacts()->saveMany($contacts);
 
         // Resumes
         $formResume = \App\Domains\Form\Form::find(3);
-        $contacts = factory(\App\Domains\Contact\Contact::class, 10)->make([
-            'name' => $faker->firstName,
-            'email' => $faker->freeEmail,
-            'phone' => $faker->phoneNumberCleared,
-            'city' => $faker->city,
-            'state' => $faker->stateAbbr,
-            'role' => $faker->words(1, true),
-            'about' => $faker->paragraph
-        ]);
+        $contacts = factory(\App\Domains\Contact\Contact::class, 5)->make();
         $formResume->contacts()->saveMany($contacts);
     }
 }
