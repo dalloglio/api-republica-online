@@ -1,4 +1,7 @@
 <?php
+Route::get('/', function () {
+    return redirect('/v1');
+});
 
 Route::get('teste', function() {
     $photo = factory(\App\Domains\Photo\Photo::class)->make();
