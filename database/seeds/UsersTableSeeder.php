@@ -21,7 +21,16 @@ class UsersTableSeeder extends Seeder
             'password' => 123456,
             'status' => 1
         ])->each(function ($user) {
-            $address = factory(\App\Domains\Address\Address::class)->make();
+            $address = factory(\App\Domains\Address\Address::class)->make([
+                'zip_code' => 88337300,
+                'street' => 'Quinta Avenida',
+                'number' => 970,
+                'sub_address' => 'Apto 03',
+                'neighborhood' => 'Municípios',
+                'country' => 'Brasil',
+                'state' => 'SC',
+                'city' => 'Balneário Camboriú'
+            ]);
             $user->address()->save($address);
 
             $photo = factory(\App\Domains\Photo\Photo::class)->make();
