@@ -78,12 +78,16 @@ class Filter extends Model
     public function setValuesAttribute($value)
     {
         if ($this->attributes['type'] == 'number') {
-            $array = explode('...', '1...4');
+            $array = explode('...', $value);
             $range = range($array[0], $array[1]);
             $keys = collect($range);
             $values = $keys->combine($range);
         } else {
-            $values = collect($value);
+            $collection = collect($value);
+            $keys = $collection->transform(function ($item, $key) {
+                return str_slug($item);
+            });
+            $values = $keys->combine($value);
         }
         $this->attributes['values'] = $values->toJson();
     }
@@ -95,7 +99,7 @@ class Filter extends Model
     public function getValuesAttribute($value)
     {
         if ($value) {
-            $value = json_decode($value, true);
+            $value = json_decode($value);
         }
         return $value;
     }
