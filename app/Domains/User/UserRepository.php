@@ -18,7 +18,7 @@ class UserRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['photo'];
+    protected $relationships = ['address', 'photo'];
 
     /**
      * @param int $limit
