@@ -22,6 +22,10 @@ class Address extends Model
         'country',
         'state',
         'city',
+        'state_id',
+        'city_id',
+        'state_initials',
+        'show_on_map'
     ];
 
     /**

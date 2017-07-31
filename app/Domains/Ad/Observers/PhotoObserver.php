@@ -24,10 +24,9 @@ class PhotoObserver
      */
     public function saved(Ad $ad)
     {
-        if ($this->request->hasFile('photos')) {
-            foreach ($this->request->photos as $photo) {
-                $ad->photos()->create(compact('photo'));
-            }
+        if ($this->request->hasFile('photo')) {
+            $photo = $this->request->photo;
+            $ad->photos()->create(compact('photo'));
         }
     }
 

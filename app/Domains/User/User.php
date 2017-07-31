@@ -6,6 +6,7 @@ use App\Domains\Ad\Ad;
 use App\Domains\Address\Address;
 use App\Domains\Favorite\Favorite;
 use App\Domains\Photo\Photo;
+use App\Domains\User\Observers\AddressObserver;
 use App\Domains\User\Observers\PhotoObserver;
 use App\Domains\User\Observers\UserObserver;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -63,6 +64,7 @@ class User extends Authenticatable
     protected static function boot()
     {
         parent::boot();
+        static::observe(AddressObserver::class);
         static::observe(PhotoObserver::class);
         static::observe(UserObserver::class);
     }
