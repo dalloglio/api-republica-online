@@ -4,6 +4,7 @@ namespace App\Domains\User\Observers;
 
 use App\Domains\User\User;
 use App\Mail\UserCreated;
+use Mail;
 
 class UserObserver
 {
