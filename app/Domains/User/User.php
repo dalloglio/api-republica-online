@@ -33,6 +33,7 @@ class User extends Authenticatable
         'gender',
         'email',
         'password',
+        'admin',
         'status'
     ];
 
@@ -53,6 +54,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'birthday' => 'date',
+        'admin' => 'boolean',
         'status' => 'boolean',
     ];
 

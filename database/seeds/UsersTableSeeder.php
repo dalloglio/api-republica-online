@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
             'gender' => \App\Domains\User\User::GENDER_MALE,
             'email' => 'ricardo.tech@live.com',
             'password' => 123456,
-            'status' => 1
+            'admin' => true,
+            'status' => true
         ])->each(function ($user) {
             $address = factory(\App\Domains\Address\Address::class)->make([
                 'zip_code' => 88337300,
@@ -45,7 +46,8 @@ class UsersTableSeeder extends Seeder
             'gender' => \App\Domains\User\User::GENDER_MALE,
             'email' => 'francisco@inove.online',
             'password' => 123456,
-            'status' => 1
+            'admin' => true,
+            'status' => true
         ])->each(function ($user) {
             $address = factory(\App\Domains\Address\Address::class)->make([
                 'zip_code' => 88337300,

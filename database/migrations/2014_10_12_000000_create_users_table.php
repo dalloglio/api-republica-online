@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->enum('gender', \App\Domains\User\User::genders())->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->boolean('admin')->default(false);
+            $table->boolean('status')->default(false);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
