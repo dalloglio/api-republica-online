@@ -32,4 +32,11 @@ class UserRepository extends BaseRepository
         $query->orderBy('name');
         return $this->doQuery($query, $limit, $paginate);
     }
+
+    public function userExists($email)
+    {
+        $query = $this->newQuery();
+        $query->where('email', $email);
+        return $query->first();
+    }
 }

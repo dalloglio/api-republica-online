@@ -47,4 +47,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('videos', 'VideoController', ['except' => $exceptRoutes]);
 });
 
+Route::post('users/facebook', 'UserController@facebook');
 Route::post('users/register', 'UserController@register');
