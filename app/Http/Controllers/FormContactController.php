@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Domains\Form\FormRepository;
+use App\Mail\FormContactCreated;
 use Illuminate\Http\Request;
+use Mail;
 
 class FormContactController extends Controller
 {
@@ -37,7 +39,12 @@ class FormContactController extends Controller
      */
     public function store(Request $request, $form_id)
     {
-        return $this->repository->findById((int) $form_id)->contacts()->create($request->all());
+        $form = $this->repository->findById((int) $form_id);
+        $contact = $form->contacts()->create($request->all());
+        if ($contact) {
+            Mail::to($form->email)->send(new FormContactCreated($form, $contact));
+            return $contact;
+        }
     }
 
     /**

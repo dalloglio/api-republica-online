@@ -16,6 +16,7 @@ class FormsTableSeeder extends Seeder
                 'slug' => 'contacts',
                 'title' => 'Contatos',
                 'description' => 'Formulário de contatos',
+                'email' => 'contato@republica.online',
                 'type' => 'contact'
             ]);
 
@@ -24,6 +25,7 @@ class FormsTableSeeder extends Seeder
                 'slug' => 'newsletters',
                 'title' => 'Newsletters',
                 'description' => 'Formulário para receber assinaturas de newsletters.',
+                'email' => 'contato@republica.online',
                 'type' => 'newsletter'
             ]);
 
@@ -31,6 +33,7 @@ class FormsTableSeeder extends Seeder
                 'slug' => 'resumes',
                 'title' => 'Trabalhe Conosco',
                 'description' => 'Formulário para receber currículos.',
+                'email' => 'contato@republica.online',
                 'type' => 'resume'
             ]);
     }

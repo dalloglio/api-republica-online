@@ -18,6 +18,7 @@ class CreateFormsTable extends Migration
             $table->string('slug');
             $table->string('title');
             $table->string('description')->nullable();
+            $table->string('email')->nullable();
             $table->enum('type', \App\Domains\Form\Form::keys());
             $table->softDeletes();
             $table->timestamps();

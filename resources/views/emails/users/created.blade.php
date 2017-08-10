@@ -5,7 +5,7 @@ Olá {{ $user->name }}, a sua conta no {{ config('app.name') }} foi criada com s
 
 Seus dados de acesso:<br>
 E-mail: {{ $user->email }}<br>
-Senha: utilize a senha que você cadastrou.
+Senha: a senha que você cadastrou.
 
 @component('mail::button', ['url' => $url, 'color' => 'blue'])
 Criar um anúncio
