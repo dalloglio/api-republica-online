@@ -49,3 +49,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 Route::post('users/facebook', 'UserController@facebook');
 Route::post('users/register', 'UserController@register');
+
+// Rotas para o site
+Route::post('forms/{form}/contacts', 'Site\FormContactController@store');

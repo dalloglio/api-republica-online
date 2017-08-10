@@ -45,6 +45,7 @@ class FormContactController extends Controller
             Mail::to($form->email)->send(new FormContactCreated($form, $contact));
             return $contact;
         }
+        return response()->json(null, 400);
     }
 
     /**
