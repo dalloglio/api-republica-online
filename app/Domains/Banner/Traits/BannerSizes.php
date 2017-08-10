@@ -10,6 +10,7 @@ trait BannerSizes
     public static function sizes()
     {
         return [
+            '336x280' => 'Banner Retângulo Grande (336x280)',
             '300x600' => 'Meia página (300x600)',
             '970x250' => 'Outdoor (970x250)',
         ];
