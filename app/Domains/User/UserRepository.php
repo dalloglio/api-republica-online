@@ -32,19 +32,4 @@ class UserRepository extends BaseRepository
         $query->orderBy('name');
         return $this->doQuery($query, $limit, $paginate);
     }
-
-    /**
-     * @param array $data
-     * @return Model
-     */
-    public function create(array $data = [])
-    {
-        if (array_key_exists('password', $data)) {
-            $data['password'] = bcrypt($data['password']);
-        }
-
-        $model = $this->factory($data);
-        $this->save($model);
-        return $model;
-    }
 }
