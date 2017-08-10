@@ -46,3 +46,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('users.favorites', 'UserFavoriteController', ['except' => $exceptRoutes]);
     Route::resource('videos', 'VideoController', ['except' => $exceptRoutes]);
 });
+
+Route::post('users/register', 'UserController@register');
