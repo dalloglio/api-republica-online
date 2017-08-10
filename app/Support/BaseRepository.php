@@ -33,6 +33,10 @@ abstract class BaseRepository implements BaseRepositoryContract
             $query = $this->newQuery();
         }
 
+        if (!empty($this->relationships)) {
+            $query->with($this->relationships);
+        }
+
         if (true == $paginate) {
             return $query->paginate($take);
         }
