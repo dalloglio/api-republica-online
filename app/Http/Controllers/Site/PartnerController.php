@@ -25,7 +25,7 @@ class PartnerController
      */
     public function index()
     {
-        $partners = $this->repository->getAll(10, false);
+        $partners = $this->repository->getAll(6, false);
         return response()->json($partners);
     }
 }
