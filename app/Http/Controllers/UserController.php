@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domains\User\UserRepository;
+use App\Events\LoginFacebook;
 use App\Support\Traits\CrudController;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class UserController extends Controller
     {
         $user = $this->repository->userExists($request->email);
         if ($user) {
+            event(new LoginFacebook($user, $request));
             return $user;
         } else {
             $user = [

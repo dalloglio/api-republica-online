@@ -13,6 +13,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'App\Events\LoginFacebook' => [
+            'App\Listeners\UserPasswordExchange',
+        ],
+
         'Laravel\Passport\Events\AccessTokenCreated' => [
             'App\Listeners\RevokeOldTokens',
         ],
