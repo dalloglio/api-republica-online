@@ -24,7 +24,7 @@ class UserCreated extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->url = 'http://republica.online/criar-anuncio';
+        $this->url = 'http://republica.online/publicar-anuncio';
     }
 
     /**
