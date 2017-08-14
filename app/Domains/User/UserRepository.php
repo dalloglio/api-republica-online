@@ -33,18 +33,10 @@ class UserRepository extends BaseRepository
         return $this->doQuery($query, $limit, $paginate);
     }
 
-    /**
-     * @param array $data
-     * @return Model
-     */
-    public function create(array $data = [])
+    public function userExists($email)
     {
-        if (array_key_exists('password', $data)) {
-            $data['password'] = bcrypt($data['password']);
-        }
-
-        $model = $this->factory($data);
-        $this->save($model);
-        return $model;
+        $query = $this->newQuery();
+        $query->where('email', $email);
+        return $query->first();
     }
 }

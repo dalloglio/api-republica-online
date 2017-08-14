@@ -18,6 +18,7 @@ class Form extends Model
         'slug',
         'title',
         'description',
+        'email',
         'type',
     ];
 

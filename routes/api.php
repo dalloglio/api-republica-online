@@ -25,6 +25,17 @@ Route::group(['middleware' => ['auth:api']], function () {
         return $request->user();
     });
 
+    /**
+     * Rotas para recursos específicos do usuário autenticado
+     */
+    Route::prefix('user')->group(function () {
+        Route::get('ads', 'User\AdController@index');
+        Route::get('ads/contacts', 'User\AdContactController@index');
+    });
+
+    /**
+     * Rotas gerais da API
+     */
     Route::resource('addresses', 'AddressController', ['except' => $exceptRoutes]);
     Route::resource('ads', 'AdController', ['except' => $exceptRoutes]);
     Route::resource('ads.addresses', 'AdAddressController', ['except' => $exceptRoutes]);
@@ -46,3 +57,17 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('users.favorites', 'UserFavoriteController', ['except' => $exceptRoutes]);
     Route::resource('videos', 'VideoController', ['except' => $exceptRoutes]);
 });
+
+Route::post('users/facebook', 'UserController@facebook');
+Route::post('users/register', 'UserController@register');
+
+/**
+ * Rotas para o site
+ */
+
+# Banners
+Route::get('banners', 'Site\BannerController@index');
+ # Forms
+Route::post('forms/{form}/contacts', 'Site\FormContactController@store');
+ # Partners
+Route::get('partners', 'Site\PartnerController@index');

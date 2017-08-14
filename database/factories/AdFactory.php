@@ -15,8 +15,8 @@ $factory->define(\App\Domains\Ad\Ad::class, function (Faker\Generator $faker) {
         'user_id' => function () {
             return factory(\App\Domains\User\User::class)->create()->id;
         },
-        'begin' => $faker->date(),
-        'end' => $faker->date(),
+        'begin' => $faker->datetime(),
+        'end' => $faker->datetime(),
         'status' => $faker->randomDigit
     ];
 });

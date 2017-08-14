@@ -17,9 +17,15 @@ class Contact extends Model
     protected $fillable = [
         'name',
         'email',
-        'message',
+        'phone',
         'cellphone',
         'whatsapp',
+        'city',
+        'state',
+        'role',
+        'subject',
+        'message',
+        'about'
     ];
 
     /**
@@ -61,5 +67,20 @@ class Contact extends Model
     public function contactable()
     {
         return $this->morphTo();
+    }
+
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = preg_replace('/\D/', '', $value);
+    }
+
+    public function setCellphoneAttribute($value)
+    {
+        $this->attributes['cellphone'] = preg_replace('/\D/', '', $value);
+    }
+
+    public function setWhatsappAttribute($value)
+    {
+        $this->attributes['whatsapp'] = preg_replace('/\D/', '', $value);
     }
 }

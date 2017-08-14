@@ -33,6 +33,9 @@ class User extends Authenticatable
         'gender',
         'email',
         'password',
+        'facebook_id',
+        'facebook_picture',
+        'admin',
         'status'
     ];
 
@@ -40,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'deleted_at', 'password', 'remember_token',
+        'deleted_at', 'password', 'password_backup', 'remember_token',
     ];
 
     /**
@@ -53,6 +56,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'birthday' => 'date',
+        'admin' => 'boolean',
         'status' => 'boolean',
     ];
 

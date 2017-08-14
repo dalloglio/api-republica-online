@@ -11,29 +11,23 @@ class AdsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Domains\Ad\Ad::class, 5)
-            ->create()
-            ->each(function ($ad) {
+        $faker = Faker\Factory::create(env('FAKER_LANGUAGE'));
+
+        factory(\App\Domains\Ad\Ad::class, 6)
+            ->create(['user_id' => 1, 'status' => true])
+            ->each(function ($ad) use ($faker) {
                 $address = factory(\App\Domains\Address\Address::class)->make();
                 $ad->address()->save($address);
 
-                $photo = factory(\App\Domains\Photo\Photo::class)->make();
-                $ad->photo()->save($photo);
-
-                $photos = factory(\App\Domains\Photo\Photo::class, 2)->make();
+                $url = $faker->imageUrl(720, 405);
+                $photos = factory(\App\Domains\Photo\Photo::class, 8)->make(['url' => $url, 'photo' => $url]);
                 $ad->photos()->saveMany($photos);
-
-                $video = factory(\App\Domains\Video\Video::class)->make();
-                $ad->video()->save($video);
-
-                $videos = factory(\App\Domains\Video\Video::class, 2)->make();
-                $ad->videos()->saveMany($videos);
 
                 $details = factory(\App\Domains\Ad\Detail::class, 2)->make();
                 $ad->details()->saveMany($details);
 
-                $contact = factory(\App\Domains\Contact\Contact::class)->make();
-                $ad->contact()->save($contact);
+                $contacts = factory(\App\Domains\Contact\Contact::class, 4)->make();
+                $ad->contacts()->saveMany($contacts);
             });
     }
 }
