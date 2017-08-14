@@ -18,4 +18,36 @@ class AdRepository extends BaseRepository
      * @var array
      */
     protected $relationships = ['address', 'contact', 'details', 'photos', 'user'];
+
+    /**
+     * @param int $user_id
+     * @param int $limit
+     * @param bool $paginate
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\AbstractPaginator
+     */
+    public function getAdsByUser($user_id, $limit = 20, $paginate = true)
+    {
+        $this->relationships = ['user', 'photo'];
+        $query = $this->newQuery();
+        $query->where('user_id', $user_id);
+        return $this->doQuery($query, $limit, $paginate);
+    }
+
+    /**
+     * @param int $user_id
+     * @param int $limit
+     * @param bool $paginate
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\AbstractPaginator
+     */
+    public function getContactsByUser($user_id, $limit = 20, $paginate = true)
+    {
+        $query = $this->newQuery();
+        $query->select('id', 'title');
+        $query->where('user_id', $user_id);
+        $query->with('contacts', 'photo');
+        // $query->withCount('contacts');
+        // dd($query->toSql());
+        return $query->get(['contacts.id', 'contacts.name']);
+        // return $this->doQuery($query, $limit, $paginate);
+    }
 }
