@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Domains\Ad\Ad;
 use App\Domains\Ad\AdRepository;
+use App\Domains\Contact\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -33,17 +35,18 @@ class AdContactController extends Controller
     }
 
     /**
-     * @param $ad_id
-     * @param $contact_id
+     * $param Ad $ad
+     * $param Contact $contact
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($ad_id, $contact_id)
+    public function show(Ad $ad, Contact $contact)
     {
-        $contact = $this->repository->findById((int) $ad_id)->contacts()->find((int) $contact_id);
-        if ($contact) {
-            return $contact;
+        if ($ad->user_id !== request()->user()->id) {
+            return response()->json(null, 403);
         }
-        return response()->json(null, 404);
+        $ad->photo;
+        $contact->ad = $ad->toArray();
+        return response()->json($contact->toArray());
     }
 
     /**

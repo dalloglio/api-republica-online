@@ -41,13 +41,10 @@ class AdRepository extends BaseRepository
      */
     public function getContactsByUser($user_id, $limit = 20, $paginate = true)
     {
+        $this->relationships = ['contacts', 'photo'];
         $query = $this->newQuery();
-        $query->select('id', 'title');
+        $query->select('id', 'title', 'slug');
         $query->where('user_id', $user_id);
-        $query->with('contacts', 'photo');
-        // $query->withCount('contacts');
-        // dd($query->toSql());
-        return $query->get(['contacts.id', 'contacts.name']);
-        // return $this->doQuery($query, $limit, $paginate);
+        return $this->doQuery($query, $limit, $paginate);
     }
 }
