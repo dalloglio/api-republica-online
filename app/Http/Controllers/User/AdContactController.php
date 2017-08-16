@@ -36,8 +36,8 @@ class AdContactController extends Controller
     }
 
     /**
-     * $param Ad $ad
-     * $param Contact $contact
+     * @param Ad $ad
+     * @param Contact $contact
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Ad $ad, Contact $contact)
@@ -55,16 +55,17 @@ class AdContactController extends Controller
     }
 
     /**
-     * @param $ad_id
-     * @param $contact_id
+     * @param Ad $ad
+     * @param Contact $contact
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($ad_id, $contact_id)
+    public function destroy(Ad $ad, Contact $contact)
     {
-        $contact = $this->repository->findById((int) $ad_id)->contacts()->find((int) $contact_id);
-        if ($contact) {
-            $contact->delete();
-            return $contact;
+        if ($ad->user_id !== request()->user()->id) {
+            return response()->json(null, 403);
+        }
+        if ($contact->delete()) {
+            return response()->json(null);
         }
         return response()->json(null, 404);
     }
