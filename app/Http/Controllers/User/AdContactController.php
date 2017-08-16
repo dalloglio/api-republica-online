@@ -6,6 +6,7 @@ use App\Domains\Ad\Ad;
 use App\Domains\Ad\AdRepository;
 use App\Domains\Contact\Contact;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdContactController extends Controller
@@ -43,6 +44,10 @@ class AdContactController extends Controller
     {
         if ($ad->user_id !== request()->user()->id) {
             return response()->json(null, 403);
+        }
+        if (empty($contact->viewed_at)) {
+            $contact->viewed_at = Carbon::now();
+            $contact->save();
         }
         $ad->photo;
         $contact->ad = $ad->toArray();

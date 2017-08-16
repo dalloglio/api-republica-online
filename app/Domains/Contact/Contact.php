@@ -25,7 +25,8 @@ class Contact extends Model
         'role',
         'subject',
         'message',
-        'about'
+        'about',
+        'viewed_at',
     ];
 
     /**
@@ -40,7 +41,7 @@ class Contact extends Model
     /**
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'viewed_at'];
 
     /**
      * The "booting" method of the model.
