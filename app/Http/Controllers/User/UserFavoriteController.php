@@ -24,13 +24,12 @@ class UserFavoriteController extends Controller
     }
 
     /**
-     * @param $user_id
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $user = request()->user();
-        $favorites = $user->favorites()->with('ad')->get();
+        $favorites = $user->favorites()->with('ad.photo')->get();
         return response()->json($favorites);
     }
 
@@ -53,16 +52,16 @@ class UserFavoriteController extends Controller
     }
 
     /**
-     * @param $user_id
-     * @param $favorite_id
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($user_id, $favorite_id)
+    public function destroy($id)
     {
-        $favorite = $this->repository->findById((int) $user_id)->favorites()->find((int) $favorite_id);
+        $user = request()->user();
+        $favorite = $user->favorites()->find((int) $id);
         if ($favorite) {
             $favorite->delete();
-            return $favorite;
+            return response()->json($favorite);
         }
         return response()->json(null, 404);
     }
