@@ -27,9 +27,11 @@ class UserFavoriteController extends Controller
      * @param $user_id
      * @return mixed
      */
-    public function index($user_id)
+    public function index()
     {
-        return $this->repository->findById((int) $user_id)->favorites;
+        $user = request()->user();
+        $favorites = $user->favorites()->with('ad')->get();
+        return response()->json($favorites);
     }
 
     /**

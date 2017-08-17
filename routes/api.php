@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('ads/{ad}/contacts/{contact}', 'User\AdContactController@show');
         Route::delete('ads/{ad}/contacts/{contact}', 'User\AdContactController@destroy');
         # Users
+        Route::get('favorites', 'User\UserFavoriteController@index');
         Route::post('favorites', 'User\UserFavoriteController@store');
     });
 
