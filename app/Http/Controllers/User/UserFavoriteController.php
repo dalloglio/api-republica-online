@@ -29,7 +29,7 @@ class UserFavoriteController extends Controller
     public function index()
     {
         $user = request()->user();
-        $favorites = $user->favorites()->with('ad.photo')->get();
+        $favorites = $user->favorites()->with('ad.photo', 'ad.category')->get();
         return response()->json($favorites);
     }
 

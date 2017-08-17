@@ -31,4 +31,20 @@ class AdController extends Controller
         $ads = $this->repository->getAdsByUser($request->user()->id);
         return response()->json($ads);
     }
+
+    /**
+     * @param int $ad_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($ad_id)
+    {
+        $user = request()->user();
+        $ad = $user->ads()->find((int) $ad_id);
+        if ($ad) {
+            if ($ad->delete()) {
+                return response()->json($ad);
+            }
+        }
+        return response()->json(null, 404);
+    }
 }

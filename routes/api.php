@@ -29,7 +29,10 @@ Route::group(['middleware' => ['auth:api']], function () {
      * Rotas para recursos específicos do usuário autenticado
      */
     Route::prefix('user')->group(function () {
+        # Ads
         Route::get('ads', 'User\AdController@index');
+        Route::delete('ads/{ad_id}', 'User\AdController@destroy');
+
         Route::get('ads/contacts', 'User\AdContactController@index');
         Route::get('ads/{ad}/contacts/{contact}', 'User\AdContactController@show');
         Route::delete('ads/{ad}/contacts/{contact}', 'User\AdContactController@destroy');
