@@ -21,14 +21,12 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     $exceptRoutes = ['create', 'edit'];
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
     /**
      * Rotas para recursos específicos do usuário autenticado
      */
     Route::prefix('user')->group(function () {
+        # User
+        Route::get('/', 'User\UserController@index');
         # Ads
         Route::get('ads', 'User\AdController@index');
         Route::delete('ads/{ad_id}', 'User\AdController@destroy');
