@@ -41,6 +41,9 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = $request->user();
-        dd($user);
+        if ($user->update($request->except('photo'))) {
+            return response()->json($user);
+        }
+        return response()->json(['message' => 'Não foi possível salvar.'], 400);
     }
 }

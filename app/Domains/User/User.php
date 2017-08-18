@@ -33,6 +33,7 @@ class User extends Authenticatable
         'gender',
         'email',
         'password',
+        'cpf',
         'facebook_id',
         'facebook_picture',
         'admin',
