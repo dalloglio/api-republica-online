@@ -46,4 +46,14 @@ class UserController extends Controller
         }
         return response()->json(['message' => 'Não foi possível salvar.'], 400);
     }
+
+    public function updatePassword(Request $request)
+    {
+        $user = $request->user();
+        $user->password = $request->password;
+        if ($user->save()) {
+            return response()->json(null);
+        }
+        return response()->json(['message' => 'Não foi possível salvar a senha.'], 400);
+    }
 }

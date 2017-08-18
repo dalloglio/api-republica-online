@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         # User
         Route::get('/', 'User\UserController@index');
         Route::put('/', 'User\UserController@update');
+        Route::patch('/password', 'User\UserController@updatePassword');
         # Ads
         Route::get('ads', 'User\AdController@index');
         Route::delete('ads/{ad_id}', 'User\AdController@destroy');
