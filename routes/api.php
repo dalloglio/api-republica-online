@@ -17,6 +17,10 @@ Route::get('/', function () {
     echo '<h2>Api República Online</h2>';
 });
 
+Route::get('teste', function () {
+
+});
+
 Route::group(['middleware' => ['auth:api']], function () {
 
     $exceptRoutes = ['create', 'edit'];
@@ -29,6 +33,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/', 'User\UserController@index');
         Route::put('/', 'User\UserController@update');
         Route::patch('/password', 'User\UserController@updatePassword');
+        Route::post('/photo', 'User\UserController@updatePhoto');
         # Ads
         Route::get('ads', 'User\AdController@index');
         Route::delete('ads/{ad_id}', 'User\AdController@destroy');

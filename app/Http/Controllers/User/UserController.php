@@ -56,4 +56,19 @@ class UserController extends Controller
         }
         return response()->json(['message' => 'Não foi possível salvar a senha.'], 400);
     }
+
+    public function updatePhoto(Request $request)
+    {
+        $user = $request->user();
+        $photo = $user->photo;
+        if ($photo) {
+            if ($photo->update($request->all())) {
+                return $photo;
+            }
+        } else {
+            $photo = $user->photo()->create($request->all());
+            return $photo;
+        }
+        return response()->json(null, 404);
+    }
 }
