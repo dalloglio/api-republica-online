@@ -81,6 +81,8 @@ Route::post('users/register', 'UserController@register');
 
 # Banners
 Route::get('banners', 'Site\BannerController@index');
+# Banners
+Route::get('categories', 'Site\CategoryController@index');
  # Forms
 Route::post('forms/{form}/contacts', 'Site\FormContactController@store');
  # Partners
