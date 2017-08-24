@@ -78,12 +78,13 @@ Route::post('users/register', 'UserController@register');
 /**
  * Rotas para o site
  */
-
-# Banners
-Route::get('banners', 'Site\BannerController@index');
-# Banners
-Route::get('categories', 'Site\CategoryController@index');
- # Forms
-Route::post('forms/{form}/contacts', 'Site\FormContactController@store');
- # Partners
-Route::get('partners', 'Site\PartnerController@index');
+Route::prefix('site')->group(function () {
+    # Banners
+    Route::get('banners', 'Site\BannerController@index');
+    # Categories
+    Route::get('categories', 'Site\CategoryController@index');
+     # Forms
+    Route::post('forms/{form}/contacts', 'Site\FormContactController@store');
+     # Partners
+    Route::get('partners', 'Site\PartnerController@index');
+});
