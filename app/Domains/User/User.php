@@ -125,4 +125,15 @@ class User extends Authenticatable
             $this->attributes['password'] = bcrypt($password);
         }
     }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    // public function sendPasswordResetNotification($token)
+    // {
+    //     dd($token);
+    // }
 }

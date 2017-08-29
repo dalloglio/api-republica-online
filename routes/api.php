@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 Route::post('users/facebook', 'UserController@facebook');
 Route::post('users/register', 'UserController@register');
+Route::post('password/email', 'ForgotPasswordController@forgot')->name('password.email');
+Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset');
 
 /**
  * Rotas para o site
