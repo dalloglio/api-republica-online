@@ -2,6 +2,7 @@
 
 namespace App\Domains\User;
 
+use App\Mail\ForgotPassword;
 use App\Domains\Ad\Ad;
 use App\Domains\Address\Address;
 use App\Domains\Favorite\Favorite;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -132,8 +134,8 @@ class User extends Authenticatable
      * @param  string  $token
      * @return void
      */
-    // public function sendPasswordResetNotification($token)
-    // {
-    //     dd($token);
-    // }
+    public function sendPasswordResetNotification($token)
+    {
+        Mail::to(request()->email)->send(new ForgotPassword($token));
+    }
 }
