@@ -48,7 +48,7 @@ class ResetPasswordController extends Controller
     protected function resetPassword($user, $password)
     {
         $user->forceFill([
-            'password' => bcrypt($password),
+            'password' => $password,
             'remember_token' => Str::random(60),
         ])->save();
     }
@@ -61,7 +61,7 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetResponse($response)
     {
-        return response()->json(['status' => trans($response)]);
+        return response()->json(['message' => trans($response)]);
     }
 
     /**
@@ -73,6 +73,6 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        return response()->json(['email' => trans($response)]);
+        return response()->json(['erro' => trans($response)], 400);
     }
 }
