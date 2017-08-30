@@ -51,8 +51,6 @@ class ResetPasswordController extends Controller
             'password' => bcrypt($password),
             'remember_token' => Str::random(60),
         ])->save();
-
-        $this->guard()->login($user);
     }
 
     /**
