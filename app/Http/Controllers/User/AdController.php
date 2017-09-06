@@ -33,6 +33,17 @@ class AdController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $user = $request->user();
+        $ad = $user->ads()->create($request->all());
+        return response()->json($ad);
+    }
+
+    /**
      * @param int $ad_id
      * @return \Illuminate\Http\JsonResponse
      */
