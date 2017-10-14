@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Domains\Ad\Ad;
 use App\Domains\Ad\AdRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -33,6 +34,25 @@ class AdController extends Controller
     }
 
     /**
+     * @param int $ad_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($ad_id)
+    {
+        $user = request()->user();
+        $ad = $user->ads()->find((int) $ad_id);
+        if ($ad) {
+            $ad->address;
+            $ad->photo;
+            $ad->photos;
+            $ad->details;
+            $ad->contact;
+            return response()->json($ad);
+        }
+        return response()->json(null, 404);
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -41,6 +61,21 @@ class AdController extends Controller
         $user = $request->user();
         $ad = $user->ads()->create($request->all());
         return response()->json($ad);
+    }
+
+    /**
+     * @param Request $request
+     * @param int $ad_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, $ad_id)
+    {
+        $user = $request->user();
+        $ad = $user->ads()->find((int) $ad_id);
+        if ($ad->update($request->all())) {
+            return response()->json($ad);
+        }
+        return response()->json(null, 404);
     }
 
     /**
