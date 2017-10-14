@@ -26,7 +26,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->unsignedInteger('state_id')->nullable();
             $table->unsignedInteger('city_id')->nullable();
-            $table->enum('show_on_map', \App\Domains\Address\Address::keys())->default(0);
+            $table->enum('show_on_map', \App\Domains\Address\Address::keys())->default('default');
             $table->nullableMorphs('addressable');
             $table->softDeletes();
             $table->timestamps();

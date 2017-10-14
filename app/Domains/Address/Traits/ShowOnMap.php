@@ -14,9 +14,9 @@ trait ShowOnMap
     public static function options()
     {
         return [
-            '0' => 'Não mostrar',
-            '1' => 'Mostrar a localização aproximada',
-            '2' => 'Mostrar a localização exata'
+            'default' => 'Não mostrar',
+            'approximate' => 'Mostrar a localização aproximada',
+            'exact' => 'Mostrar a localização exata'
         ];
     }
 
