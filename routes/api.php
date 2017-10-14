@@ -36,7 +36,9 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/photo', 'User\UserController@updatePhoto');
         # Ads
         Route::get('ads', 'User\AdController@index');
+        Route::get('ads/{ad}', 'User\AdController@show');
         Route::post('ads', 'User\AdController@store');
+        Route::put('ads/{ad}', 'User\AdController@update');
         Route::post('ads/{ad}/photos', 'User\AdPhotoController@store');
         Route::delete('ads/{ad_id}', 'User\AdController@destroy');
 
