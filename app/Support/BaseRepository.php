@@ -37,7 +37,7 @@ abstract class BaseRepository implements BaseRepositoryContract
             $query->with($this->relationships);
         }
 
-        if (true == $paginate) {
+        if (true === $paginate) {
             return $query->paginate($take);
         }
 
