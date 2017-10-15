@@ -166,6 +166,20 @@ class Ad extends Model
     {
         if (!empty($value)) {
             $this->attributes['price'] = (double) str_replace(',', '.', str_replace('.', '', $value));
+        } else {
+            $this->attributes['price'] = $value;
         }
+    }
+
+    /**
+     * @param  string  $value
+     * @return string
+     */
+    public function getPriceAttribute($value)
+    {
+        if (!empty($value)) {
+            return number_format($value, 2, '.', '');
+        }
+        return $value;
     }
 }
