@@ -17,7 +17,7 @@ class AdRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['address', 'contact', 'details', 'photos', 'user'];
+    protected $relationships = ['address', 'contact', 'details', 'photo', 'photos', 'user'];
 
     /**
      * @param int $user_id
@@ -45,6 +45,18 @@ class AdRepository extends BaseRepository
         $query = $this->newQuery();
         $query->select('id', 'title', 'slug');
         $query->where('user_id', $user_id);
+        return $this->doQuery($query, $limit, $paginate);
+    }
+
+    public function getLatestAds($limit = 20, $paginate = false, $random = false)
+    {
+        $this->relationships = ['address', 'photo'];
+        $query = $this->newQuery();
+        $query->where('status', true);
+        $query->orderBy('id', 'desc');
+        if ($random) {
+            $query->inRandomOrder();
+        }
         return $this->doQuery($query, $limit, $paginate);
     }
 }
