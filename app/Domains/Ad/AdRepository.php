@@ -27,7 +27,9 @@ class AdRepository extends BaseRepository
      */
     public function getAdsByUser($user_id, $limit = 20, $paginate = true)
     {
-        $this->relationships = ['user', 'photo'];
+        $this->relationships = ['user', 'photo' => function ($query) {
+            $query->orderBy('favorite', 1);
+        }];
         $query = $this->newQuery();
         $query->where('user_id', $user_id);
         return $this->doQuery($query, $limit, $paginate);
@@ -50,7 +52,9 @@ class AdRepository extends BaseRepository
 
     public function getLatestAds($limit = 20, $paginate = false, $random = false)
     {
-        $this->relationships = ['address', 'photo'];
+        $this->relationships = ['address', 'photo' => function ($query) {
+            $query->orderBy('favorite', 1);
+        }];
         $query = $this->newQuery();
         $query->where('status', true);
         $query->orderBy('id', 'desc');
