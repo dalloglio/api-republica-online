@@ -55,7 +55,9 @@ class Address extends Model
      */
     public function setZipCodeAttribute($value)
     {
-        if (!empty($value)) {
+        if (empty($value)) {
+            $this->attributes['zip_code'] = $value;
+        } else {
             $this->attributes['zip_code'] = preg_replace('/\D/', '', $value);
         }
     }

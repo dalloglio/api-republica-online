@@ -26,7 +26,7 @@ class AddressObserver
             if (is_null($ad->address)) {
                 $ad->address()->create($address);
             } else {
-                $ad->address()->update($address);
+                $ad->address->update($address);
             }
         }
     }
