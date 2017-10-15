@@ -37,4 +37,12 @@ class AdPhotoController extends Controller
         $photo->delete();
         return response()->json($photo);
     }
+
+    public function favorite(Ad $ad, Photo $photo)
+    {
+        $ad->photos()->update(['favorite' => false]);
+        $photo->favorite = true;
+        $photo->save();
+        return response()->json($photo);
+    }
 }
