@@ -26,6 +26,7 @@ class Photo extends Model
         'type',
         'size',
         'url',
+        'favorite',
     ];
 
     /**
@@ -41,6 +42,13 @@ class Photo extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'favorite' => 'boolean'
+    ];
 
     /**
      * The "booting" method of the model.
