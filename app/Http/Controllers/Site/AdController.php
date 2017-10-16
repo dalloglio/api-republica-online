@@ -22,6 +22,18 @@ class AdController
     }
 
     /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(Request $request)
+    {
+        $paginate = $request->has('paginate') ? (bool) $request->paginate : true;
+        $limit = $request->has('limit') ? (int) $request->limit : 24;
+        $order = $request->has('order') ? $request->order : 'latest';
+        $ads = $this->repository->getAdsSite($limit, $paginate, $order);
+        return response()->json($ads);
+    }
+
+    /**
      * @param int $ad_id
      * @return \Illuminate\Http\JsonResponse
      */
@@ -38,7 +50,7 @@ class AdController
     {
         $paginate = $request->has('paginate') ? (bool) $request->paginate : false;
         $limit = $request->has('limit') ? (int) $request->limit : 4;
-        $ads = $this->repository->getLatestAds($limit, $paginate);
+        $ads = $this->repository->getAdsSite($limit, $paginate);
         return response()->json($ads);
     }
 }
