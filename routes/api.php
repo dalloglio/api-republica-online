@@ -88,6 +88,8 @@ Route::post('password/reset', 'ResetPasswordController@reset')->name('password.r
 Route::prefix('site')->group(function () {
     # Ads
     Route::get('ads/latest', 'Site\AdController@latest');
+    Route::get('ads/{ad}', 'Site\AdController@show');
+    Route::post('ads/{ad}/contacts', 'Site\AdContactController@store');
     # Banners
     Route::get('banners', 'Site\BannerController@index');
     # Categories

@@ -22,14 +22,23 @@ class AdController
     }
 
     /**
+     * @param int $ad_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($ad_id)
+    {
+        $ad = $this->repository->getAdSite((int) $ad_id);
+        return response()->json($ad);
+    }
+
+    /**
      * @return \Illuminate\Http\JsonResponse
      */
     public function latest(Request $request)
     {
-        $random = $request->has('random') ? (bool) $request->random : false;
         $paginate = $request->has('paginate') ? (bool) $request->paginate : false;
         $limit = $request->has('limit') ? (int) $request->limit : 4;
-        $ads = $this->repository->getLatestAds($limit, $paginate, $random);
+        $ads = $this->repository->getLatestAds($limit, $paginate);
         return response()->json($ads);
     }
 }
