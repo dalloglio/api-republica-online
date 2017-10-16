@@ -64,7 +64,7 @@ class AdRepository extends BaseRepository
 
     public function getLatestAds($limit = 20, $paginate = false)
     {
-        $this->relationships = ['address', 'photo' => function ($query) {
+        $this->relationships = ['address', 'details', 'photo' => function ($query) {
             $query->orderBy('favorite', 1);
         }];
         $query = $this->newQuery();
