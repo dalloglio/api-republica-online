@@ -17,6 +17,8 @@ class Detail extends Model
         'category_id',
         'filter_id',
         'input_id',
+        'filter_order',
+        'filter_icon',
         'category',
         'filter',
         'input',

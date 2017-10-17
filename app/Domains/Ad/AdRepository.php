@@ -64,9 +64,15 @@ class AdRepository extends BaseRepository
 
     public function getAdsSite($limit = 24, $paginate = true, $order = 'latest')
     {
-        $this->relationships = ['address', 'details', 'photo' => function ($query) {
-            $query->orderBy('favorite', 1);
-        }];
+        $this->relationships = [
+            'address',
+            'details' => function ($query) {
+                $query->orderBy('filter_order', 'asc');
+            },
+            'photo' => function ($query) {
+                $query->orderBy('favorite', 1);
+            }
+        ];
         $query = $this->newQuery();
         $query->where('status', true);
         $query->with($this->relationships);
