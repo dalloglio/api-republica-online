@@ -29,9 +29,9 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->has('list')) {
-            $categories = $this->repository->lists('title', 'id');
+            $categories = $this->repository->getListsSite();
         } else {
-            $categories = $this->repository->getAll(200, false);
+            $categories = $this->repository->getCategoriesSite(200, false);
         }
         return response()->json($categories);
     }
