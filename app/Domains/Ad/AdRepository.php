@@ -62,7 +62,7 @@ class AdRepository extends BaseRepository
         return $query->find($id);
     }
 
-    public function getAdsSite($limit => 24, $paginate = true, $order = 'latest')
+    public function getAdsSite($limit = 24, $paginate = true, $order = 'latest')
     {
         $this->relationships = ['address', 'details', 'photo' => function ($query) {
             $query->orderBy('favorite', 1);

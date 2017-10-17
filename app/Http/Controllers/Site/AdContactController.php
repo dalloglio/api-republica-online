@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Site;
 
 use App\Domains\Ad\Ad;
 use App\Domains\Ad\AdRepository;
+use App\Http\Controllers\Controller;
 use App\Mail\AdContacted;
 use Illuminate\Http\Request;
 use Mail;
 
-class AdContactController
+class AdContactController extends Controller
 {
     /**
      * @var AdRepository

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Site;
 
 use App\Domains\Ad\AdRepository;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdController
+class AdController extends Controller
 {
     /**
      * @var AdRepository
