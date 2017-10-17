@@ -49,4 +49,16 @@ class Address extends Model
     {
         return $this->morphTo();
     }
+
+    /**
+     * @param $value
+     */
+    public function setZipCodeAttribute($value)
+    {
+        if (empty($value)) {
+            $this->attributes['zip_code'] = $value;
+        } else {
+            $this->attributes['zip_code'] = preg_replace('/\D/', '', $value);
+        }
+    }
 }

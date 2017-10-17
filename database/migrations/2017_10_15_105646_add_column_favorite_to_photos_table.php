@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnPasswordBackupOnUsersTable extends Migration
+class AddColumnFavoriteToPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnPasswordBackupOnUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('password_backup')->nullable()->after('password');
+        Schema::table('photos', function (Blueprint $table) {
+            $table->boolean('favorite')->default(false)->after('url');
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnPasswordBackupOnUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('password_backup');
+        Schema::table('photos', function (Blueprint $table) {
+            $table->dropColumn('favorite');
         });
     }
 }

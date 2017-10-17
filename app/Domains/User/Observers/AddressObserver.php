@@ -26,6 +26,7 @@ class AddressObserver
             if (is_null($user->address)) {
                 $user->address()->create($address);
             } else {
+                unset($address['id']);
                 $user->address()->update($address);
             }
         }

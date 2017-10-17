@@ -49,6 +49,7 @@ class Ad extends Model
      * @var array
      */
     protected $casts = [
+        'price' => 'double',
         'status' => 'boolean',
     ];
 
@@ -156,5 +157,29 @@ class Ad extends Model
             $this->attributes['slug'] = str_slug($title);
         }
         $this->attributes['title'] = $title;
+    }
+
+    /**
+     * @param $value
+     */
+    public function setPriceAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['price'] = (double) str_replace(',', '.', str_replace('.', '', $value));
+        } else {
+            $this->attributes['price'] = $value;
+        }
+    }
+
+    /**
+     * @param  string  $value
+     * @return string
+     */
+    public function getPriceAttribute($value)
+    {
+        if (!empty($value)) {
+            return number_format($value, 2, '.', '');
+        }
+        return $value;
     }
 }

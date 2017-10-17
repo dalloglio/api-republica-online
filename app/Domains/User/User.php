@@ -2,6 +2,7 @@
 
 namespace App\Domains\User;
 
+use App\Mail\ForgotPassword;
 use App\Domains\Ad\Ad;
 use App\Domains\Address\Address;
 use App\Domains\Favorite\Favorite;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -33,6 +35,7 @@ class User extends Authenticatable
         'gender',
         'email',
         'password',
+        'cpf',
         'facebook_id',
         'facebook_picture',
         'admin',
@@ -55,7 +58,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'birthday' => 'date',
         'admin' => 'boolean',
         'status' => 'boolean',
     ];
@@ -124,5 +126,16 @@ class User extends Authenticatable
         if (!empty($password)) {
             $this->attributes['password'] = bcrypt($password);
         }
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        Mail::to(request()->email)->send(new ForgotPassword($token));
     }
 }

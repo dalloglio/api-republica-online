@@ -40,6 +40,9 @@ class DetailObserver
                         $detail['filter_id'] = $filter->id;
                         $detail['input_id'] = $input->id;
 
+                        $detail['filter_order'] = $filter->order;
+                        $detail['filter_icon'] = $filter->icon;
+
                         $detail['category'] = $category->slug;
                         $detail['filter'] = $filter->slug;
                         $detail['input'] = $input->key;

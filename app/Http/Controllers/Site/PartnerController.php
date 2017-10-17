@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Domains\Partner\PartnerRepository;
+use Illuminate\Http\Request;
 
 class PartnerController
 {
@@ -23,9 +24,11 @@ class PartnerController
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $partners = $this->repository->getAll(6, false);
+        $random = $request->has('random') ? (bool) $request->random : false;
+        $limit = $request->has('limit') ? (int) $request->limit : 20;
+        $partners = $this->repository->getAllSite($limit, false, $random);
         return response()->json($partners);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnPasswordBackupOnUsersTable extends Migration
+class ChangeColumnPricePrecisionOnAdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnPasswordBackupOnUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('password_backup')->nullable()->after('password');
+        Schema::table('ads', function (Blueprint $table) {
+            $table->decimal('price', 10, 2)->change();
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnPasswordBackupOnUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('password_backup');
+        Schema::table('ads', function (Blueprint $table) {
+            $table->decimal('price')->change();
         });
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     use CrudController;
-    
+
     protected $repository;
 
     public function __construct(UserRepository $repository)

@@ -18,4 +18,13 @@ class PartnerRepository extends BaseRepository
      * @var array
      */
     protected $relationships = ['photo'];
+
+    public function getAllSite($limit = 20, $paginate = false, $random = false)
+    {
+        $query = $this->newQuery();
+        if ($random) {
+            $query->inRandomOrder();
+        }
+        return $this->doQuery($query, $limit, $paginate);
+    }
 }
