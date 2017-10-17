@@ -19,6 +19,8 @@ class Filter extends Model
         'slug',
         'title',
         'description',
+        'order',
+        'icon',
         'type',
         'values',
     ];
