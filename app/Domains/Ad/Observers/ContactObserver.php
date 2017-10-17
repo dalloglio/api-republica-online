@@ -21,7 +21,7 @@ class ContactObserver
         if ($this->request->has('contact')) {
             $contact = $this->request->contact;
             if ($ad->contact) {
-                $ad->contact()->update($contact);
+                $ad->contact->update($contact);
             } else {
                 $ad->contact()->create($contact);
             }
