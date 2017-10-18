@@ -8,8 +8,12 @@ use App\Domains\Contact\Contact;
 use App\Domains\Form\Form;
 use App\Domains\Partner\Partner;
 use App\Domains\User\User;
+use App\Validators\Validator as CustomValidator;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Validator;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
             'partners' => Partner::class,
             'users' => User::class,
         ]);
+
+        Validator::resolver(function ($translator, $data, $rules, $messages, $customAttributes) {
+            return new CustomValidator($translator, $data, $rules, $messages, $customAttributes);
+        });
     }
 
     /**
