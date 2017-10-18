@@ -91,6 +91,10 @@ class AdRepository extends BaseRepository
 
         if (!is_null($price_min) && !is_null($price_max)) {
             $query->whereBetween('price', [$price_min, $price_max]);
+        } else if (!is_null($price_min)) {
+            $query->where('price', '>=', $price_min);
+        } else if (!is_null($price_max)) {
+            $query->where('price', '<=', $price_max);
         }
 
         if (!is_null($uf)) {
