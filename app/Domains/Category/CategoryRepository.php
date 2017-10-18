@@ -26,6 +26,9 @@ class CategoryRepository extends BaseRepository
 
     public function getCategoriesSite($limit = 100, $paginate = false, $order = 'title')
     {
+        $this->relationships['filters'] = function ($query) {
+            $query->orderBy('order');
+        };
         $query = $this->newQuery();
         $query->orderBy($order);
         return $this->doQuery($query, $limit, $paginate);
