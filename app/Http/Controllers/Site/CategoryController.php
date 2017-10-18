@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Domains\Category\Category;
 use App\Domains\Category\CategoryRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -34,5 +35,14 @@ class CategoryController extends Controller
             $categories = $this->repository->getCategoriesSite(200, false);
         }
         return response()->json($categories);
+    }
+
+    /**
+     * @param Category $category
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Category $category)
+    {
+        return response()->json($category);
     }
 }

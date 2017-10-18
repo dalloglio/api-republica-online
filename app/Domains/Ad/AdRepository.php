@@ -62,8 +62,14 @@ class AdRepository extends BaseRepository
         return $query->find($id);
     }
 
-    public function getAdsSite($limit = 24, $paginate = true, $order = 'latest')
-    {
+    public function getAdsSite(
+        $limit = 24,
+        $paginate = true,
+        $order = 'latest',
+        $category = null,
+        $uf = null,
+        $cidade = null
+    ) {
         $this->relationships = [
             'address',
             'details' => function ($query) {
@@ -75,6 +81,23 @@ class AdRepository extends BaseRepository
         ];
         $query = $this->newQuery();
         $query->where('status', true);
+
+        if (is_integer($category)) {
+            $query->where('category_id', $category);
+        }
+
+        if (!is_null($uf)) {
+            $query->whereHas('address', function ($query) use ($uf) {
+                $query->where('state', $uf);
+            });
+        }
+
+        if (!is_null($cidade)) {
+            $query->whereHas('address', function ($query) use ($cidade) {
+                $query->where('city', $cidade);
+            });
+        }
+
         $query->with($this->relationships);
         if ($order === 'latest') {
             $query->latest();

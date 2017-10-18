@@ -30,7 +30,10 @@ class AdController extends Controller
         $paginate = $request->has('paginate') ? (bool) $request->paginate : true;
         $limit = $request->has('limit') ? (int) $request->limit : 24;
         $order = $request->has('order') ? $request->order : 'latest';
-        $ads = $this->repository->getAdsSite($limit, $paginate, $order);
+        $category = $request->has('category') ? (int) $request->category : null;
+        $uf = $request->has('uf') ? $request->uf : null;
+        $cidade = $request->has('cidade') ? $request->cidade : null;
+        $ads = $this->repository->getAdsSite($limit, $paginate, $order, $category, $uf, $cidade);
         return response()->json($ads);
     }
 

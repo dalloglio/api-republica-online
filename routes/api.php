@@ -95,6 +95,7 @@ Route::prefix('site')->group(function () {
     Route::get('banners', 'Site\BannerController@index');
     # Categories
     Route::get('categories', 'Site\CategoryController@index');
+    Route::get('categories/{category}', 'Site\CategoryController@show');
      # Forms
     Route::post('forms/{form}/contacts', 'Site\FormContactController@store');
      # Partners
