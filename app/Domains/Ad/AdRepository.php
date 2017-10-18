@@ -69,6 +69,8 @@ class AdRepository extends BaseRepository
         $category = null,
         $uf = null,
         $cidade = null,
+        $price_min = null,
+        $price_max = null,
         $filters = []
     ) {
         $this->relationships = [
@@ -85,6 +87,10 @@ class AdRepository extends BaseRepository
 
         if (is_integer($category)) {
             $query->where('category_id', $category);
+        }
+
+        if (!is_null($price_min) && !is_null($price_max)) {
+            $query->whereBetween('price', [$price_min, $price_max]);
         }
 
         if (!is_null($uf)) {
@@ -117,5 +123,88 @@ class AdRepository extends BaseRepository
             $query->oldest();
         }
         return $this->doQuery($query, $limit, $paginate);
+    }
+
+    public function getFilterPrices()
+    {
+        $query = $this->newQuery();
+        $min = (double) $query->where('status', true)->min('price');
+        $max = (double) $query->where('status', true)->max('price');
+        return compact('min', 'max');
+    }
+
+    public function getFilterCategories()
+    {
+        $query = $this->newQuery();
+        $query->with('category');
+        $query->where('status', true);
+        $ads = $query->get();
+
+        $categories = $ads->mapWithKeys(function ($item, $key) {
+            $category = $item->category;
+            return [$category->id => [
+                    'id' => $category->id,
+                    'slug' => $category->slug,
+                    'title' => $category->title,
+                ]
+            ];
+        });
+
+        $sorted = collect($categories->all())->sortBy('title');
+        return $sorted->values()->all();
+    }
+
+    public function getFilterStates()
+    {
+        $query = $this->newQuery();
+        $query->with('address');
+        $query->where('status', true);
+        $query->whereHas('address', function ($query) {
+            $query->whereNotNull('state_id')->whereNotNull('state_initials')->whereNotNull('state');
+        });
+        $ads = $query->get();
+
+        $states = $ads->mapWithKeys(function ($item, $key) {
+            $state = $item->address->state;
+            $state_id = $item->address->state_id;
+            $state_initials = $item->address->state_initials;
+
+            return [$state_id => [
+                    'ID' => $state_id,
+                    'Sigla' => $state_initials,
+                    'Nome' => $state
+                ]
+            ];
+        });
+        $sorted = collect($states->all())->sortBy('Sigla');
+        return $sorted->values()->all();
+    }
+
+    public function getFilterStateCities($state_id)
+    {
+        $query = $this->newQuery();
+        $query->with('address');
+        $query->where('status', true);
+        $query->whereHas('address', function ($query) use ($state_id) {
+            $query->where('state_id', $state_id)
+                ->whereNotNull('city_id')
+                ->whereNotNull('city');
+        });
+        $ads = $query->get();
+
+        $cities = $ads->mapWithKeys(function ($item, $key) {
+            $city = $item->address->city;
+            $city_id = $item->address->city_id;
+            $state_id = $item->address->state_id;
+
+            return [$state_id => [
+                    'ID' => $city_id,
+                    'Nome' => $city,
+                    'Estado' => $state_id
+                ]
+            ];
+        });
+        $sorted = collect($cities->all())->sortBy('Nome');
+        return $sorted->values()->all();
     }
 }

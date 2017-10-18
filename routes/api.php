@@ -89,6 +89,10 @@ Route::prefix('site')->group(function () {
     # Ads
     Route::get('ads', 'Site\AdController@index');
     Route::get('ads/latest', 'Site\AdController@latest');
+    Route::get('ads/prices', 'Site\AdController@prices');
+    Route::get('ads/categories', 'Site\AdController@categories');
+    Route::get('ads/states', 'Site\AdController@states');
+    Route::get('ads/states/{ID}/cities', 'Site\AdController@states_cities');
     Route::get('ads/{ad}', 'Site\AdController@show');
     Route::post('ads/{ad}/contacts', 'Site\AdContactController@store');
     # Banners
