@@ -33,7 +33,8 @@ class AdController extends Controller
         $category = $request->has('category') ? (int) $request->category : null;
         $uf = $request->has('uf') ? $request->uf : null;
         $cidade = $request->has('cidade') ? $request->cidade : null;
-        $ads = $this->repository->getAdsSite($limit, $paginate, $order, $category, $uf, $cidade);
+        $filters = $request->has('filters') ? json_decode($request->filters, true) : null;
+        $ads = $this->repository->getAdsSite($limit, $paginate, $order, $category, $uf, $cidade, $filters);
         return response()->json($ads);
     }
 

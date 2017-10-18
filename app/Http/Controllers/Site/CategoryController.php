@@ -43,6 +43,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $category->filters;
         return response()->json($category);
     }
 }

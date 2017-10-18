@@ -68,7 +68,8 @@ class AdRepository extends BaseRepository
         $order = 'latest',
         $category = null,
         $uf = null,
-        $cidade = null
+        $cidade = null,
+        $filters = []
     ) {
         $this->relationships = [
             'address',
@@ -96,6 +97,17 @@ class AdRepository extends BaseRepository
             $query->whereHas('address', function ($query) use ($cidade) {
                 $query->where('city', $cidade);
             });
+        }
+
+        if (is_array($filters) && !empty($filters)) {
+            foreach ($filters as $key => $value) {
+                $query->whereHas('details', function ($query) use ($key, $value) {
+                    $query->where([
+                        ['filter', $key],
+                        ['input', $value],
+                    ]);
+                });
+            }
         }
 
         $query->with($this->relationships);
