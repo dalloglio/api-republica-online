@@ -138,4 +138,16 @@ class User extends Authenticatable
     {
         Mail::to(request()->email)->send(new ForgotPassword($token));
     }
+
+    /**
+     * @param $value
+     */
+    public function setCpfAttribute($value)
+    {
+        if (empty($value)) {
+            $this->attributes['cpf'] = $value;
+        } else {
+            $this->attributes['cpf'] = preg_replace('/\D/', '', $value);
+        }
+    }
 }
