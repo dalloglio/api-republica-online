@@ -88,7 +88,7 @@ class AdRepository extends BaseRepository
 
         if (!is_null($uf)) {
             $query->whereHas('address', function ($query) use ($uf) {
-                $query->where('state', $uf);
+                $query->where('state_initials', $uf);
             });
         }
 
