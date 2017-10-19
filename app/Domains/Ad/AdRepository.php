@@ -50,6 +50,23 @@ class AdRepository extends BaseRepository
         return $this->doQuery($query, $limit, $paginate);
     }
 
+    /**
+     * @param int $user_id
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\AbstractPaginator
+     */
+    public function getContactsUnreadByUser($user_id)
+    {
+        $this->relationships = ['contacts', 'photo'];
+        $query = $this->newQuery();
+        $query->select('id', 'title', 'slug');
+        $query->where('user_id', $user_id);
+        $query->with($this->relationships);
+        $query->whereHas('contacts', function ($query) {
+            $query->whereNull('viewed_at');
+        });
+        return $query->get();
+    }
+
     public function getAdSite($id)
     {
         $this->relationships[] = 'user.photo';

@@ -36,6 +36,16 @@ class AdContactController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function unread(Request $request)
+    {
+        $contacts = $this->repository->getContactsUnreadByUser($request->user()->id);
+        return response()->json($contacts);
+    }
+
+    /**
      * @param Ad $ad
      * @param Contact $contact
      * @return \Illuminate\Http\JsonResponse

@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         # Ads
 
         Route::get('ads/contacts', 'User\AdContactController@index');
+        Route::get('ads/contacts/unread', 'User\AdContactController@unread');
         Route::get('ads/{ad}/contacts/{contact}', 'User\AdContactController@show');
         Route::delete('ads/{ad}/contacts/{contact}', 'User\AdContactController@destroy');
 
