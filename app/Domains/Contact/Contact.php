@@ -22,6 +22,7 @@ class Contact extends Model
         'whatsapp',
         'city',
         'state',
+        'origin',
         'role',
         'subject',
         'message',
