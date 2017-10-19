@@ -34,16 +34,24 @@ class UserFavoriteController extends Controller
     }
 
     /**
+     * @param Ad $ad
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Ad $ad)
+    {
+        $user = request()->user();
+        $favorite = $user->favorites()->where('ad_id', $ad->id)->first();
+        return response()->json($favorite);
+    }
+
+    /**
+     * @param Ad $ad
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Ad $ad)
     {
         $user = request()->user();
-        $ad = Ad::find((int) $request->ad_id);
-        if (!$ad) {
-            return response()->json(['message' => 'Anúncio não encontrado.'], 400);
-        }
         if ($user->favorites()->where('ad_id', $ad->id)->exists()) {
             return response()->json(['message' => 'Você já favoritou este anúncio.'], 200);
         }
