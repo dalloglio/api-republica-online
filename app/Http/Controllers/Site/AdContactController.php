@@ -32,6 +32,7 @@ class AdContactController extends Controller
      */
     public function store(Request $request, Ad $ad)
     {
+        $request->merge(['origin' => 'page_form_ad']);
         $contact = $ad->contacts()->create($request->all());
         if ($contact) {
             Mail::to($request->email)->send(new AdContacted($ad, $contact));

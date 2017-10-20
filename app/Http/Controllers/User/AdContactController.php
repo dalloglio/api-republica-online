@@ -36,13 +36,23 @@ class AdContactController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function unread(Request $request)
+    {
+        $contacts = $this->repository->getContactsUnreadByUser($request->user()->id);
+        return response()->json($contacts);
+    }
+
+    /**
      * @param Ad $ad
      * @param Contact $contact
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Ad $ad, Contact $contact)
     {
-        if ($ad->user_id !== request()->user()->id) {
+        if ((int) $ad->user_id !== (int) request()->user()->id) {
             return response()->json(null, 403);
         }
         if (empty($contact->viewed_at)) {
@@ -61,7 +71,7 @@ class AdContactController extends Controller
      */
     public function destroy(Ad $ad, Contact $contact)
     {
-        if ($ad->user_id !== request()->user()->id) {
+        if ((int) $ad->user_id !== (int) request()->user()->id) {
             return response()->json(null, 403);
         }
         if ($contact->delete()) {

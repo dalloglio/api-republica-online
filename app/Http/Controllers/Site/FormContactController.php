@@ -32,6 +32,7 @@ class FormContactController extends Controller
      */
     public function store(Request $request, Form $form)
     {
+        $request->merge(['origin' => 'page_form_contact']);
         $contact = $form->contacts()->create($request->all());
         if ($contact) {
             Mail::to($form->email)->send(new FormContactCreated($form, $contact));

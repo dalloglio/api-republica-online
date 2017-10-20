@@ -170,16 +170,4 @@ class Ad extends Model
             $this->attributes['price'] = $value;
         }
     }
-
-    /**
-     * @param  string  $value
-     * @return string
-     */
-    public function getPriceAttribute($value)
-    {
-        if (!empty($value)) {
-            return number_format($value, 2, '.', '');
-        }
-        return $value;
-    }
 }

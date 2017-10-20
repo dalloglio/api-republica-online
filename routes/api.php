@@ -35,6 +35,12 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::patch('/password', 'User\UserController@updatePassword');
         Route::post('/photo', 'User\UserController@updatePhoto');
         # Ads
+
+        Route::get('ads/contacts', 'User\AdContactController@index');
+        Route::get('ads/contacts/unread', 'User\AdContactController@unread');
+        Route::get('ads/{ad}/contacts/{contact}', 'User\AdContactController@show');
+        Route::delete('ads/{ad}/contacts/{contact}', 'User\AdContactController@destroy');
+
         Route::get('ads', 'User\AdController@index');
         Route::get('ads/{ad}', 'User\AdController@show');
         Route::post('ads', 'User\AdController@store');
@@ -42,13 +48,10 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('ads/{ad}/photos', 'User\AdPhotoController@store');
         Route::post('ads/{ad}/photos/{photo}/favorite', 'User\AdPhotoController@favorite');
         Route::delete('ads/{ad_id}', 'User\AdController@destroy');
-
-        Route::get('ads/contacts', 'User\AdContactController@index');
-        Route::get('ads/{ad}/contacts/{contact}', 'User\AdContactController@show');
-        Route::delete('ads/{ad}/contacts/{contact}', 'User\AdContactController@destroy');
         # Users
         Route::get('favorites', 'User\UserFavoriteController@index');
-        Route::post('favorites', 'User\UserFavoriteController@store');
+        Route::get('favorites/ads/{ad}', 'User\UserFavoriteController@show');
+        Route::post('favorites/ads/{ad}', 'User\UserFavoriteController@store');
         Route::delete('favorites/{id}', 'User\UserFavoriteController@destroy');
     });
 
@@ -89,12 +92,17 @@ Route::prefix('site')->group(function () {
     # Ads
     Route::get('ads', 'Site\AdController@index');
     Route::get('ads/latest', 'Site\AdController@latest');
+    Route::get('ads/prices', 'Site\AdController@prices');
+    Route::get('ads/categories', 'Site\AdController@categories');
+    Route::get('ads/states', 'Site\AdController@states');
+    Route::get('ads/states/{ID}/cities', 'Site\AdController@states_cities');
     Route::get('ads/{ad}', 'Site\AdController@show');
     Route::post('ads/{ad}/contacts', 'Site\AdContactController@store');
     # Banners
     Route::get('banners', 'Site\BannerController@index');
     # Categories
     Route::get('categories', 'Site\CategoryController@index');
+    Route::get('categories/{category}', 'Site\CategoryController@show');
      # Forms
     Route::post('forms/{form}/contacts', 'Site\FormContactController@store');
      # Partners

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\User\UpdatePasswordRequest;
+
 use App\Domains\User\UserRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -47,7 +49,7 @@ class UserController extends Controller
         return response()->json(['message' => 'Não foi possível salvar.'], 400);
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
         $user = $request->user();
         $user->password = $request->password;

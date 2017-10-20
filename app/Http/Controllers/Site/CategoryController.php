@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Domains\Category\Category;
 use App\Domains\Category\CategoryRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,10 +30,20 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->has('list')) {
-            $categories = $this->repository->lists('title', 'id');
+            $categories = $this->repository->getListsSite();
         } else {
-            $categories = $this->repository->getAll(200, false);
+            $categories = $this->repository->getCategoriesSite(200, false);
         }
         return response()->json($categories);
+    }
+
+    /**
+     * @param Category $category
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Category $category)
+    {
+        $category->filters;
+        return response()->json($category);
     }
 }
