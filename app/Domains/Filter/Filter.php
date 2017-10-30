@@ -4,6 +4,7 @@ namespace App\Domains\Filter;
 
 use App\Domains\Category\Category;
 use App\Domains\Filter\Observers\FilterObserver;
+use App\Domains\Filter\Observers\PhotoObserver;
 use App\Domains\Filter\Traits\Types;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,7 +21,6 @@ class Filter extends Model
         'title',
         'description',
         'order',
-        'icon',
         'type',
         'values',
     ];
@@ -56,6 +56,15 @@ class Filter extends Model
     {
         parent::boot();
         static::observe(FilterObserver::class);
+        static::observe(PhotoObserver::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function photo()
+    {
+        return $this->morphOne(Photo::class, 'photoable');
     }
 
     /**
