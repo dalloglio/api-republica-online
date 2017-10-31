@@ -6,6 +6,7 @@ use App\Domains\Category\Category;
 use App\Domains\Filter\Observers\FilterObserver;
 use App\Domains\Filter\Observers\PhotoObserver;
 use App\Domains\Filter\Traits\Types;
+use App\Domains\Photo\Photo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
