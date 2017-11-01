@@ -69,6 +69,7 @@ class AdRepository extends BaseRepository
 
     public function getAdSite($id)
     {
+        $this->relationships[] = 'details.filter.photo';
         $this->relationships[] = 'user.photo';
         $this->relationships['photo'] = function ($query) {
             $query->orderBy('favorite', 1);
@@ -95,6 +96,7 @@ class AdRepository extends BaseRepository
             'details' => function ($query) {
                 $query->orderBy('filter_order', 'asc');
             },
+            'details.filter.photo',
             'photo' => function ($query) {
                 $query->orderBy('favorite', 1);
             }
