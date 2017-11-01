@@ -17,5 +17,5 @@ class FilterRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['inputs'];
+    protected $relationships = ['inputs', 'photo'];
 }

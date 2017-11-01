@@ -2,6 +2,7 @@
 
 namespace App\Domains\Ad;
 
+use App\Domains\Filter\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -37,5 +38,10 @@ class Detail extends Model
     public function ad()
     {
         return $this->belongsTo(Ad::class);
+    }
+
+    public function filter()
+    {
+        return $this->belongsTo(Filter::class);
     }
 }
