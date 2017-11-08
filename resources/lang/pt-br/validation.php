@@ -40,7 +40,7 @@ return [
     'distinct'             => ':attribute tem um valor duplicado.',
     'email'                => ':attribute deve ser um endereço de e-mail válido.',
     'exists'               => ':attribute selecionado é inválido.',
-    'file'                 => ':attribute deve ser um arquivo.',    
+    'file'                 => ':attribute deve ser um arquivo.',
     'filled'               => ':attribute é um campo obrigatório.',
     'image'                => ':attribute deve ser uma imagem.',
     'in'                   => ':attribute é inválido.',
@@ -64,7 +64,7 @@ return [
     ],
     'not_in'               => 'O :attribute selecionado é inválido.',
     'numeric'              => ':attribute deve ser um número.',
-    'present'              => 'O campo :attribute deve ser presente.',    
+    'present'              => 'O campo :attribute deve ser presente.',
     'regex'                => 'O formato de :attribute é inválido.',
     'required'             => 'O campo :attribute é obrigatório.',
     'required_if'          => 'O campo :attribute é obrigatório quando :other é :value.',
@@ -83,7 +83,7 @@ return [
     'string'               => ':attribute deve ser uma string',
     'timezone'             => ':attribute deve ser uma timezone válida.',
     'unique'               => ':attribute já está em uso.',
-    'uploaded'             => ':attribute falhou ao ser enviado.',    
+    'uploaded'             => ':attribute falhou ao ser enviado.',
     'url'                  => 'O formato de :attribute é inválido.',
 
     /*
@@ -98,8 +98,66 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'title' => [
+            'required' => 'O campo título é obrigatório',
+            'max' => 'O título não deve ter mais que :max caracteres',
+        ],
+        'description' => [
+            'required' => 'O campo descrição é obrigatório',
+            'max' => 'A descrição não deve ter mais que :max caracteres',
+        ],
+        'price' => [
+            'required' => 'O campo preço é obrigatório',
+        ],
+        'category_id' => [
+            'required' => 'O campo categoria é obrigatório',
+            'exists' => 'A categoria selecionada é inválida',
+        ],
+
+        'address.zip_code' => [
+            'required' => 'O campo cep é obrigatório',
+            'max' => 'O cep não deve ter mais que :max caracteres',
+        ],
+        'address.street' => [
+            'required' => 'O campo rua é obrigatório',
+            'max' => 'A rua não deve ter mais que :max caracteres',
+        ],
+        'address.number' => [
+            'required' => 'O campo número é obrigatório',
+            'max' => 'O número não deve ter mais que :max caracteres',
+        ],
+        'address.sub_address' => [
+            'required' => 'O campo complemento é obrigatório',
+            'max' => 'O complemento não deve ter mais que :max caracteres',
+        ],
+        'address.neighborhood' => [
+            'required' => 'O campo bairro é obrigatório',
+            'max' => 'O bairro não deve ter mais que :max caracteres',
+        ],
+        'address.state' => [
+            'required' => 'O campo estado é obrigatório',
+            'max' => 'O estado não deve ter mais que :max caracteres',
+        ],
+        'address.state_initials' => [
+            'required' => 'O campo estado é obrigatório',
+            'max' => 'O estado não deve ter mais que :max caracteres',
+        ],
+        'address.city' => [
+            'required' => 'O campo cidade é obrigatório',
+            'max' => 'A cidade não deve ter mais que :max caracteres',
+        ],
+
+        'contact.name' => [
+            'required' => 'O campo nome é obrigatório',
+            'max' => 'O nome não deve ter mais que :max caracteres',
+        ],
+        'contact.cellphone' => [
+            'required' => 'O campo telefone é obrigatório',
+            'max' => 'O telefone não deve ter mais que :max caracteres',
+        ],
+        'contact.whatsapp' => [
+            'required' => 'O campo WhatsApp é obrigatório',
+            'max' => 'A WhatsApp não deve ter mais que :max caracteres',
         ],
     ],
 
