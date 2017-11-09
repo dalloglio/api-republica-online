@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Domains\Ad\Ad;
 use App\Domains\Ad\AdRepository;
+use App\Http\Requests\Ad\AdStoreRequest;
+use App\Http\Requests\Ad\AdUpdateRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -53,10 +55,10 @@ class AdController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param AdStoreRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(AdStoreRequest $request)
     {
         $user = $request->user();
         $ad = $user->ads()->create($request->all());
@@ -64,11 +66,11 @@ class AdController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param AdUpdateRequest $request
      * @param int $ad_id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $ad_id)
+    public function update(AdUpdateRequest $request, $ad_id)
     {
         $user = $request->user();
         $ad = $user->ads()->find((int) $ad_id);

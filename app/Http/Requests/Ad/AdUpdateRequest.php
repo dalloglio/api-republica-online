@@ -24,11 +24,11 @@ class AdUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|max:255',
             'title' => 'required|max:255',
             'description' => 'required|max:500',
             'price' => 'required',
             'category_id' => 'required|exists:categories,id',
+            'status' => 'required',
 
             'address.zip_code' => 'required|max:9',
             'address.street' => 'required|max:255',

@@ -156,8 +156,8 @@ return [
             'max' => 'O telefone não deve ter mais que :max caracteres',
         ],
         'contact.whatsapp' => [
-            'required' => 'O campo WhatsApp é obrigatório',
-            'max' => 'A WhatsApp não deve ter mais que :max caracteres',
+            'required' => 'O campo whats app é obrigatório',
+            'max' => 'A whats app não deve ter mais que :max caracteres',
         ],
     ],
 
