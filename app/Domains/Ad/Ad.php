@@ -5,6 +5,7 @@ namespace App\Domains\Ad;
 use App\Domains\Ad\Observers\AddressObserver;
 use App\Domains\Ad\Observers\ContactObserver;
 use App\Domains\Ad\Observers\DetailObserver;
+use App\Domains\Ad\Observers\FavoriteObserver;
 use App\Domains\Ad\Observers\PhotoObserver;
 use App\Domains\Address\Address;
 use App\Domains\Category\Category;
@@ -49,7 +50,6 @@ class Ad extends Model
      * @var array
      */
     protected $casts = [
-        'price' => 'double',
         'status' => 'boolean',
     ];
 
@@ -64,6 +64,7 @@ class Ad extends Model
         static::observe(AddressObserver::class);
         static::observe(ContactObserver::class);
         static::observe(DetailObserver::class);
+        static::observe(FavoriteObserver::class);
         static::observe(PhotoObserver::class);
     }
 
