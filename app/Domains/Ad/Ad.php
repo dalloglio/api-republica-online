@@ -50,7 +50,6 @@ class Ad extends Model
      * @var array
      */
     protected $casts = [
-        'price' => 'double',
         'status' => 'boolean',
     ];
 

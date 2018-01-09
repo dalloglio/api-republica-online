@@ -28,11 +28,12 @@ class AdStoreRequest extends FormRequest
                 'description' => 'required|max:500',
                 'price' => 'required',
                 'category_id' => 'required|exists:categories,id',
+                'user_id' => 'required|exists:users,id',
 
                 'address.zip_code' => 'required|max:9',
                 'address.street' => 'required|max:255',
                 'address.number' => 'required|max:20',
-                'address.sub_address' => 'required|max:255',
+                'address.sub_address' => 'max:255',
                 'address.neighborhood' => 'required|max:255',
                 'address.state' => 'required|max:255',
                 'address.state_initials' => 'required|max:2',
