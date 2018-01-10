@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Domains\User\UserRepository;
 use App\Events\LoginFacebook;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\User\UserRegisterRequest;
+use App\Http\Requests\User\UserStoreRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use App\Support\Traits\CrudController;
 use Illuminate\Http\Request;
 
@@ -19,13 +21,23 @@ class UserController extends Controller
         $this->repository = $repository;
     }
 
-    public function register(UserRequest $request)
+    public function store(UserStoreRequest $request)
+    {
+        return $this->repository->create($request->all());
+    }
+
+    public function update(UserUpdateRequest $request, $id)
+    {
+        return $this->repository->update($request->all(), $id);
+    }
+
+    public function register(UserRegisterRequest $request)
     {
         $request->merge(['status' => true]);
         return $this->store($request);
     }
 
-    public function facebook(UserRequest $request)
+    public function facebook(UserRegisterRequest $request)
     {
         $user = $this->repository->userExists($request->email);
         if ($user) {
