@@ -34,7 +34,7 @@ class UserController extends Controller
     public function register(UserRegisterRequest $request)
     {
         $request->merge(['status' => true]);
-        return $this->store($request);
+        return $this->repository->create($request->all());
     }
 
     public function facebook(UserRegisterRequest $request)
@@ -57,7 +57,7 @@ class UserController extends Controller
             ];
             unset($request['id']);
             $request->merge($user);
-            return $this->store($request);
+            return $this->repository->create($request->all());
         }
     }
 }
