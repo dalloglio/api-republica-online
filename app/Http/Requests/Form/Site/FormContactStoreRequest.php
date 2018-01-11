@@ -37,6 +37,19 @@ class FormContactStoreRequest extends FormRequest
                     'message' => 'required|max:1000',
                 ];
                 break;
+
+            case 2:
+                $rules = [
+                    'name' => 'required|max:255',
+                    'email' => 'required|email|max:255',
+                ];
+                break;
+
+            case 3:
+                $rules = [
+                    'resume' => 'required',
+                ];
+                break;
             
             default:
                 $rules = [
