@@ -28,7 +28,7 @@ class AdStoreRequest extends FormRequest
             'description' => 'required|max:500',
             'price' => 'required',
             'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
 
             'address.zip_code' => 'required|max:9',
             'address.street' => 'required|max:255',

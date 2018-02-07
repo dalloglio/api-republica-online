@@ -140,7 +140,9 @@ class AdRepository extends BaseRepository
         }
 
         $query->with($this->relationships);
-        if ($order === 'latest') {
+        if ($order === 'random') {
+            $query->inRandomOrder();
+        } else if ($order === 'latest') {
             $query->latest();
         } else if ($order === 'oldest') {
             $query->oldest();
@@ -163,17 +165,19 @@ class AdRepository extends BaseRepository
         $query->where('status', true);
         $ads = $query->get();
 
-        $categories = $ads->mapWithKeys(function ($item, $key) {
+        $categories = [];
+        foreach ($ads as $item) {
             $category = $item->category;
-            return [$category->id => [
+            if ($category) {
+                $categories[$category->id] = [
                     'id' => $category->id,
                     'slug' => $category->slug,
                     'title' => $category->title,
-                ]
-            ];
-        });
+                ];
+            }
+        }
 
-        $sorted = collect($categories->all())->sortBy('title');
+        $sorted = collect($categories)->sortBy('title');
         return $sorted->values()->all();
     }
 
