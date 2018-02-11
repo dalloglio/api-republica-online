@@ -42,13 +42,16 @@ class AdController extends Controller
     public function show($ad_id)
     {
         $user = request()->user();
-        $ad = $user->ads()->find((int) $ad_id);
+        $ad = $user->ads()->with([
+            'address', 'category.filters.inputs', 'contact', 'photo', 'photos', 'details'
+        ])->find((int) $ad_id);
         if ($ad) {
-            $ad->address;
-            $ad->photo;
-            $ad->photos;
-            $ad->details;
-            $ad->contact;
+            // $ad->address;
+            // $ad->category;
+            // $ad->photo;
+            // $ad->photos;
+            // $ad->details;
+            // $ad->contact;
             return response()->json($ad);
         }
         return response()->json(null, 404);

@@ -17,7 +17,7 @@ class AdRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['address', 'contact', 'details', 'photo', 'photos', 'user'];
+    protected $relationships = ['address', 'category', 'contact', 'details', 'photo', 'photos', 'user'];
 
     /**
      * @param int $user_id
@@ -93,6 +93,7 @@ class AdRepository extends BaseRepository
     ) {
         $this->relationships = [
             'address',
+            'category',
             'details' => function ($query) {
                 $query->orderBy('filter_order', 'asc');
             },
