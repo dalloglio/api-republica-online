@@ -17,7 +17,7 @@ class AdRepository extends BaseRepository
     /**
      * @var array
      */
-    protected $relationships = ['address', 'contact', 'details', 'photo', 'photos', 'user'];
+    protected $relationships = ['address', 'category', 'contact', 'details', 'photo', 'photos', 'user'];
 
     /**
      * @param int $user_id
@@ -93,6 +93,7 @@ class AdRepository extends BaseRepository
     ) {
         $this->relationships = [
             'address',
+            'category',
             'details' => function ($query) {
                 $query->orderBy('filter_order', 'asc');
             },
@@ -140,7 +141,9 @@ class AdRepository extends BaseRepository
         }
 
         $query->with($this->relationships);
-        if ($order === 'latest') {
+        if ($order === 'random') {
+            $query->inRandomOrder();
+        } else if ($order === 'latest') {
             $query->latest();
         } else if ($order === 'oldest') {
             $query->oldest();
@@ -163,17 +166,19 @@ class AdRepository extends BaseRepository
         $query->where('status', true);
         $ads = $query->get();
 
-        $categories = $ads->mapWithKeys(function ($item, $key) {
+        $categories = [];
+        foreach ($ads as $item) {
             $category = $item->category;
-            return [$category->id => [
+            if ($category) {
+                $categories[$category->id] = [
                     'id' => $category->id,
                     'slug' => $category->slug,
                     'title' => $category->title,
-                ]
-            ];
-        });
+                ];
+            }
+        }
 
-        $sorted = collect($categories->all())->sortBy('title');
+        $sorted = collect($categories)->sortBy('title');
         return $sorted->values()->all();
     }
 

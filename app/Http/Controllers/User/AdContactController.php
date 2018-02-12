@@ -55,13 +55,29 @@ class AdContactController extends Controller
         if ((int) $ad->user_id !== (int) request()->user()->id) {
             return response()->json(null, 403);
         }
-        if (empty($contact->viewed_at)) {
+        if (!$contact->viewed_at) {
             $contact->viewed_at = Carbon::now();
             $contact->save();
         }
         $ad->photo;
         $contact->ad = $ad->toArray();
         return response()->json($contact->toArray());
+    }
+
+    /**
+     * @param Ad $ad
+     * @param Contact $contact
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function viewed(Ad $ad, Contact $contact)
+    {
+        if ((int) $ad->user_id !== (int) request()->user()->id) {
+            return response()->json(null, 403);
+        }
+        if ($contact->delete()) {
+            return response()->json(null);
+        }
+        return response()->json(null, 404);
     }
 
     /**

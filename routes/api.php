@@ -34,8 +34,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::put('/', 'User\UserController@update');
         Route::patch('/password', 'User\UserController@updatePassword');
         Route::post('/photo', 'User\UserController@updatePhoto');
+        
         # Ads
-
         Route::get('ads/contacts', 'User\AdContactController@index');
         Route::get('ads/contacts/unread', 'User\AdContactController@unread');
         Route::get('ads/{ad}/contacts/{contact}', 'User\AdContactController@show');
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('ads/{ad}/photos', 'User\AdPhotoController@store');
         Route::post('ads/{ad}/photos/{photo}/favorite', 'User\AdPhotoController@favorite');
         Route::delete('ads/{ad_id}', 'User\AdController@destroy');
+        
         # Users
         Route::get('favorites', 'User\UserFavoriteController@index');
         Route::get('favorites/ads/{ad}', 'User\UserFavoriteController@show');
